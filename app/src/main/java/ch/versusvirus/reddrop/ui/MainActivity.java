@@ -1,8 +1,8 @@
-package ch.versusvirus.reddrop;
+package ch.versusvirus.reddrop.ui;
 
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
+import ch.versusvirus.reddrop.R;
 
 public class MainActivity extends AppCompatActivity {
 
