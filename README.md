@@ -1,2 +1,2 @@
 # RedDrop
-Versusvirus challenge to make doniating blood easier
+Versusvirus challenge to make donating blood easier
