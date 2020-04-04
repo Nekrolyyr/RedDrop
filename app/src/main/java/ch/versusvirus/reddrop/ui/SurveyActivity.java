@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -25,7 +26,9 @@ public class SurveyActivity extends AppCompatActivity {
     private String mAnswer;
     private int mQuestionsLength = mQuestions.mQuestions.length;
     private int mCounter = 0;
-    private Vector<Integer> mSurvey = new Vector<Integer>(mQuestionsLength);
+    private int fraction = (100/mQuestionsLength);
+
+    private int[] mSurvey = new int[mQuestionsLength];
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,21 +48,26 @@ public class SurveyActivity extends AppCompatActivity {
         updateQuestion(mCounter);
         mCounter++;
 
+        ProgressBar moveBar = (ProgressBar) findViewById(R.id.progress);
+        moveBar.setProgress(0);
+
         btn_yes.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (btn_yes.getText() == mAnswer) {
-                    mSurvey.add(0);
+                    mSurvey[mCounter] = 0;
                 } else {
-                    mSurvey.add(1);
+                    mSurvey[mCounter] = 1;
                 }
-                updateQuestion(mCounter);
-                mCounter++;
-                if (mCounter == mQuestionsLength) {
+                if ((mCounter) == mQuestionsLength) {
                     Intent intent = new Intent(SurveyActivity.this, SurveyResultActivity.class);
                     intent.putExtra("Results",mSurvey);
                     startActivity(intent);
-                }
+                } else{
+                    moveBar.setProgress( (fraction * mCounter));
+                    updateQuestion(mCounter);
+                    mCounter++;}
+
             }
         });
 
@@ -67,17 +75,18 @@ public class SurveyActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if (btn_no.getText() == mAnswer) {
-                    mSurvey.add(0);
+                    mSurvey[mCounter] = 0;
                 } else {
-                    mSurvey.add(1);
+                    mSurvey[mCounter] = 1;
                 }
-                updateQuestion(mCounter);
-                mCounter++;
-                if (mCounter == mQuestionsLength) {
+                if ((mCounter) == mQuestionsLength) {
                     Intent intent = new Intent(SurveyActivity.this, SurveyResultActivity.class);
-                    intent.putExtra("Results",mSurvey);
+                    intent.putExtra("RESULTS",mSurvey);
                     startActivity(intent);
-                }
+                } else {
+                    moveBar.setProgress( (fraction * mCounter));
+                    updateQuestion(mCounter);
+                    mCounter++;}
             }
         });
 
