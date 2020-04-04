@@ -50,13 +50,14 @@ public class SurveyActivity extends AppCompatActivity {
                 } else {
                     mSurvey.add(1);
                 }
-                updateQuestion(mCounter);
-                mCounter++;
-                if (mCounter == mQuestionsLength) {
+                if ((mCounter) == mQuestionsLength) {
                     Intent intent = new Intent(SurveyActivity.this, SurveyResultActivity.class);
                     intent.putExtra("Results",mSurvey);
                     startActivity(intent);
-                }
+                } else{
+                updateQuestion(mCounter);
+                mCounter++;}
+
             }
         });
 
@@ -68,13 +69,13 @@ public class SurveyActivity extends AppCompatActivity {
                 } else {
                     mSurvey.add(1);
                 }
-                updateQuestion(mCounter);
-                mCounter++;
-                if (mCounter == mQuestionsLength) {
+                if ((mCounter) == mQuestionsLength) {
                     Intent intent = new Intent(SurveyActivity.this, SurveyResultActivity.class);
                     intent.putExtra("RESULTS",mSurvey);
                     startActivity(intent);
-                }
+                } else {
+                updateQuestion(mCounter);
+                mCounter++;}
             }
         });
 
