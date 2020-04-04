@@ -20,7 +20,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/editText"
+        android:id="@+id/dateOfBirth"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -29,24 +29,12 @@
         tools:layout_editor_absoluteY="76dp" />
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/textView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Birthday"
-        tools:layout_editor_absoluteX="39dp"
-        tools:layout_editor_absoluteY="89dp" />
-
-    <TextView
-        android:id="@+id/textView4"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:fontFamily="sans-serif-light"
-        android:text="Survey"
-        android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:textSize="24sp"
+        tools:layout_editor_absoluteX="29dp"
+        tools:layout_editor_absoluteY="76dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
