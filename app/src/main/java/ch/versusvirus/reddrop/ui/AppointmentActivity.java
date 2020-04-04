@@ -14,6 +14,7 @@ import java.util.Locale;
 
 import ch.versusvirus.reddrop.R;
 import ch.versusvirus.reddrop.logic.model.AppointmentTimeslot;
+import ch.versusvirus.reddrop.logic.model.DonationListEntry;
 import ch.versusvirus.reddrop.ui.adapter.TimeBarAdapter;
 
 public class AppointmentActivity extends AppCompatActivity {
@@ -27,6 +28,8 @@ public class AppointmentActivity extends AppCompatActivity {
 
         Toolbar myToolbar = findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
+
+        DonationListEntry location = DonationListEntry.fromJson(getIntent().getStringExtra("LOCATION"));
 
         RecyclerView barChart = findViewById(R.id.rv_barChart);
         timeBarAdapter = TimeBarAdapter.getDefaultInstance(client -> {

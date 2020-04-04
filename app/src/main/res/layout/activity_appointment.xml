@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/background"
     tools:context=".ui.AppointmentActivity">
 
     <androidx.appcompat.widget.Toolbar
@@ -18,22 +19,82 @@
         app:layout_constraintTop_toTopOf="parent"
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
 
+    <View
+        android:id="@+id/v_card1"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="15dp"
+        android:background="@color/colorPrimary"
+        android:elevation="4dp"
+        app:layout_constraintBottom_toBottomOf="@id/spacerHorizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/my_toolbar" />
+
+    <TextView
+        android:id="@+id/txt_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:elevation="4dp"
+        android:text="Mo, May 11 - 2020"
+        android:textColor="@color/colorGrey"
+        app:layout_constraintStart_toStartOf="@+id/v_card1"
+        app:layout_constraintTop_toTopOf="@+id/v_card1" />
+
+    <TextView
+        android:id="@+id/txt_organizer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:elevation="4dp"
+        android:fontFamily="sans-serif-light"
+        android:text="SRK Ostschweiz"
+        android:textColor="@color/colorAccent"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@+id/v_card1"
+        app:layout_constraintTop_toBottomOf="@+id/txt_date" />
+
+    <TextView
+        android:id="@+id/txt_time"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="10dp"
+        android:elevation="4dp"
+        android:fontFamily="sans-serif-condensed-medium"
+        android:gravity="center"
+        android:text="8:00-17:00"
+        android:textColor="@color/colorGrey"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="@+id/v_card1"
+        app:layout_constraintTop_toTopOf="@+id/txt_organizer" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_barChart"
         android:layout_width="0dp"
         android:layout_height="200dp"
-        android:layout_marginTop="12dp"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:elevation="4dp"
+        app:layout_constraintEnd_toEndOf="@+id/v_card1"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/my_toolbar" />
+        app:layout_constraintStart_toStartOf="@+id/v_card1"
+        app:layout_constraintTop_toBottomOf="@+id/txt_organizer" />
 
     <View
         android:id="@+id/spacerHorizontal"
         android:layout_width="0dp"
         android:layout_height="1dp"
         android:background="@color/colorBlack"
+        android:elevation="4dp"
         app:layout_constraintEnd_toEndOf="@id/rv_barChart"
+        app:layout_constraintStart_toStartOf="@id/v_card1"
         app:layout_constraintTop_toBottomOf="@id/rv_barChart" />
 
 
