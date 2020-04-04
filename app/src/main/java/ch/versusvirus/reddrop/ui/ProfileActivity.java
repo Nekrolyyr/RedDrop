@@ -32,22 +32,13 @@ public class ProfileActivity extends AppCompatActivity {
 
     private String gender = "";
     public static final String MyPREFERENCES = "MyPrefs" ;
+    private String db = "";
 
-    public void onRadioButtonClicked(View view) {
-        // Is the button now checked?
-        boolean checked = ((RadioButton) view).isChecked();
-        String gender = "";
-        // Check which radio button was clicked
-        switch(view.getId()) {
-            case R.id.male:
-                if (checked)
-                    gender = "M";
-                    break;
-            case R.id.female:
-                if (checked)
-                    gender = "F";
-                    break;
-        }
+    void loadData() { // load from shared preferences
+        SharedPreferences sp = getSharedPreferences(MyPREFERENCES, MODE_PRIVATE);
+        gender = sp.getString("Gender", ""); //Change this
+        db = sp.getString("Birthday", ""); //Change this
+        //Log.d("Editable", "Loaded data: Hints = " + String.valueOf(mHints));
     }
 
     @Override
@@ -57,8 +48,22 @@ public class ProfileActivity extends AppCompatActivity {
 
         Calendar myCalendar = Calendar.getInstance();
 
+        loadData();
+
         EditText edittext= (EditText) findViewById(R.id.dateOfBirth);
-        
+        if(!TextUtils.isEmpty(db)){
+            edittext.setText(db);
+        };
+        if(gender.equals("M")){
+            RadioGroup radioGroup = (RadioGroup) findViewById(R.id.gender);
+            radioGroup.check(R.id.male);
+        };
+        if(gender.equals("F")){
+            RadioGroup radioGroup = (RadioGroup) findViewById(R.id.gender);
+            radioGroup.check(R.id.female);
+        };
+
+
         final DatePickerDialog.OnDateSetListener date = new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
