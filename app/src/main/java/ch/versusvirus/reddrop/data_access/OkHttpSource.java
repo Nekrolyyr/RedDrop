@@ -12,9 +12,9 @@ import okhttp3.RequestBody;
 
 class OkHttpSource implements LocationSource, BloodBarometerSource, AppointmentGetterSource, AppointmentSetterSource {
     private static final String locationsURL = "https://www.blutspende.ch/de/blutspendetermine/terminliste?search{{term}}=8057&search{{radius}}=100";
-    private static final String bloodBarometerURL = "http://bloodonor.julien.li/API/get_supplies.php?region={{region}}";
-    private static final String appointmentGetterURL = "http://bloodonor.julien.li/API/get_schedule_capacities.php?passwd={{password}}&n_slots={{nSlots}}&id={{id}}";
-    private static final String appointmentSetterURL = "http://bloodonor.julien.li/API/schedule_action.php";
+    private static final String bloodBarometerURL = "https://bloodonor.julien.li/API/get_supplies.php?region={{region}}";
+    private static final String appointmentGetterURL = "https://bloodonor.julien.li/API/get_schedule_capacities.php?passwd={{password}}&n_slots={{nSlots}}&id={{id}}";
+    private static final String appointmentSetterURL = "https://bloodonor.julien.li/API/schedule_action.php";
 
     private OkHttpClient client;
 

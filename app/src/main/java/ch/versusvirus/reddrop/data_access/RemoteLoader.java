@@ -79,7 +79,7 @@ public abstract class RemoteLoader {
         });
     }
 
-    public static void registerAppointmentActionAsynv(AppointmentSetterParams params, RemoteLoaderResult<Appointment> resultAction) {
+    public static void registerAppointmentActionAsync(AppointmentSetterParams params, RemoteLoaderResult<Appointment> resultAction) {
         AppointmentSetterSource source = new OkHttpSource();
         source.registerAppointmentAction(params, new Callback() {
             @Override
