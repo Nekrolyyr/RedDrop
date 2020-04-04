@@ -76,6 +76,8 @@ public class SurveyActivity extends AppCompatActivity {
                 }
             }
         });
+
+
     }
 
      private void updateQuestion(int num){
