@@ -25,19 +25,24 @@ public class SurveyResultActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
-        Intent intent = this.getIntent();
+        Intent intent = getIntent();
+
         Bundle bundle = intent.getExtras();
-        int results[] = (int[]) bundle.getSerializable("RESULTS");
+        int results[] = (int[]) bundle.getIntArray("RESULTS");
+
+
+        //int results[]= new int[] {1,2,3,4,5,6,7,8,9,10};
+
 
         int sum_test = sumArray(results);
 
         if (sum_test==0) {
-            Proceed_button_text="You are egligible to donate";
+            Result_str="You are egligible to donate";
         } else if (sum_test==1) {
-            Proceed_button_text="There is only one issue:";
+            Result_str="There is only one issue:";
             //TODO: Show the wrong question
         } else {
-            Proceed_button_text="You are a looser";
+            Result_str="Unfortunately you are not egligible to donate";
         }
 
         super.onCreate(savedInstanceState);

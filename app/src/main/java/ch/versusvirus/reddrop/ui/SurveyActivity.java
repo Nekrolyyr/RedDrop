@@ -100,4 +100,16 @@ public class SurveyActivity extends AppCompatActivity {
         mAnswer = mQuestions.getCorretAnswer(num);
     }
 
+    @Override
+    public void onBackPressed() {
+        ProgressBar moveBar = (ProgressBar) findViewById(R.id.progress);
+        if  (mCounter==0) {
+            super.onBackPressed();
+        }
+        else {
+            mCounter--;
+            updateQuestion(mCounter);
+            moveBar.setProgress((int) (fraction * mCounter));
+        }
+    }
 }

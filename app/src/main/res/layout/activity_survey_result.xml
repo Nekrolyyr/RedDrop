@@ -54,6 +54,7 @@
         android:layout_marginStart="100dp"
         android:layout_marginBottom="432dp"
         android:text="Fail/Success"
+        android:textSize="28sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.373"
