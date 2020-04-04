@@ -26,26 +26,15 @@
         app:layout_constraintGuide_percent="0.4" />
 
     <TextView
-        android:id="@+id/textView5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="15dp"
-        android:layout_marginTop="32dp"
-        android:text="My Profile"
-        android:textSize="36sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
         android:id="@+id/textView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="5dp"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="32dp"
         android:text="Birthday *"
         android:textSize="20sp"
-        app:layout_constraintStart_toStartOf="@id/textView5"
-        app:layout_constraintTop_toBottomOf="@+id/textView5" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/my_toolbar" />
 
     <EditText
         android:id="@+id/dateOfBirth"
@@ -124,11 +113,10 @@
         android:id="@+id/textView_bloodtype"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="5dp"
         android:layout_marginTop="24dp"
         android:text="Blood type"
         android:textSize="20sp"
-        app:layout_constraintStart_toStartOf="@id/textView5"
+        app:layout_constraintStart_toStartOf="@+id/textView8"
         app:layout_constraintTop_toBottomOf="@+id/textView8" />
 
     <Spinner
