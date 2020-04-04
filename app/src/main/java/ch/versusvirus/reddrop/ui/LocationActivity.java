@@ -1,5 +1,6 @@
 package ch.versusvirus.reddrop.ui;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -31,8 +32,9 @@ public class LocationActivity extends AppCompatActivity {
         setSupportActionBar(myToolbar);
 
         RecyclerView locationView = findViewById(R.id.rv_location);
-        locationEntryAdapter = LocationEntryAdapter.getDefaultInstance(client -> {
-            //TODO: open next activity
+        locationEntryAdapter = LocationEntryAdapter.getDefaultInstance(entry -> {
+            Intent intent = new Intent(this, AppointmentActivity.class);
+            intent.putExtra("LOCATION", entry.asJson());
         });
         locationView.setLayoutManager(new LinearLayoutManager(this, RecyclerView.VERTICAL, false));
         locationView.setAdapter(locationEntryAdapter);

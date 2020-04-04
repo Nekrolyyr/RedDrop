@@ -23,6 +23,7 @@ public class HomeActivity extends AppCompatActivity {
 
         Toolbar myToolbar = findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
+        setTitle("HOME");
 
         reminder = new Reminder(getApplicationContext());
         findViewById(R.id.btn_notification_test).setOnClickListener(v -> {

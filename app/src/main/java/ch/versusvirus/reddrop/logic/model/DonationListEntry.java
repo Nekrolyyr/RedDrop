@@ -1,5 +1,7 @@
 package ch.versusvirus.reddrop.logic.model;
 
+import com.google.gson.Gson;
+
 public class DonationListEntry {
 
     private String villageInfo, additionalInfo, timeRange, weekday, date, donationType, infoURL;
@@ -43,4 +45,15 @@ public class DonationListEntry {
         return infoURL;
     }
 
+    public static DonationListEntry fromJson(String json) {
+        return (new Gson()).fromJson(json, DonationListEntry.class);
+    }
+
+    public String getId() {
+        return additionalInfo + "_" + date.replace(".", "_");
+    }
+
+    public String asJson() {
+        return (new Gson()).toJson(this);
+    }
 }

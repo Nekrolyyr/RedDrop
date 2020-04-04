@@ -62,8 +62,16 @@ public class LocationEntryAdapter extends ListAdapter<DonationListEntry, Locatio
         }
 
         void bind(DonationListEntry entry, ClickListener listener) {
-            TextView text = itemView.findViewById(R.id.txt_entry);
-            text.setText(entry.getDate() + " " + entry.getVillageInfo());
+            TextView date = itemView.findViewById(R.id.txt_date);
+            date.setText(entry.getWeekday() + ", " + entry.getDate());
+            TextView organizer = itemView.findViewById(R.id.txt_organizer);
+            organizer.setText(entry.getAdditionalInfo());
+            TextView location = itemView.findViewById(R.id.txt_location);
+            location.setText(entry.getVillageInfo());
+            TextView distance = itemView.findViewById(R.id.txt_distance_value);
+            distance.setText("0 KM");
+            TextView time = itemView.findViewById(R.id.txt_time);
+            time.setText(entry.getTimeRange());
             itemView.setOnClickListener(v -> listener.onClick(entry));
         }
     }
