@@ -7,14 +7,12 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.ListAdapter;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.text.SimpleDateFormat;
-import java.util.List;
 import java.util.Locale;
 
 import ch.versusvirus.reddrop.R;
@@ -23,7 +21,15 @@ import ch.versusvirus.reddrop.logic.model.AppointmentTimeslot;
 public class TimeBarAdapter extends ListAdapter<AppointmentTimeslot, TimeBarAdapter.ViewHolder> {
 
     private final ClickListener listener;
-    private int MaxExpectedPeople = 10;
+    private int MaxExpectedPeople = 15;
+
+    public int getMaxExpectedPeople() {
+        return MaxExpectedPeople;
+    }
+
+    public void setMaxExpectedPeople(int maxExpectedPeople) {
+        MaxExpectedPeople = maxExpectedPeople;
+    }
 
     private TimeBarAdapter(ClickListener listener) {
         super(new DiffUtil.ItemCallback<AppointmentTimeslot>() {
@@ -53,17 +59,6 @@ public class TimeBarAdapter extends ListAdapter<AppointmentTimeslot, TimeBarAdap
     }
 
     @Override
-    public void submitList(@Nullable List<AppointmentTimeslot> list) {
-        super.submitList(list);
-        if (list == null) return;
-        for (AppointmentTimeslot slot : list) {
-            if (slot.getExpectedPeople() > MaxExpectedPeople) {
-                MaxExpectedPeople = (slot.getExpectedPeople() / 5) * 5 + 1;
-            }
-        }
-    }
-
-    @Override
     public void onBindViewHolder(@NonNull final ViewHolder holder, int position) {
         AppointmentTimeslot item = getItem(position);
         if (item == null) return;
@@ -83,12 +78,18 @@ public class TimeBarAdapter extends ListAdapter<AppointmentTimeslot, TimeBarAdap
             TextView time = itemView.findViewById(R.id.txt_time);
             SimpleDateFormat format = new SimpleDateFormat("hh:mm", Locale.GERMANY);
             time.setText(format.format(item.getTime()));
-            ConstraintLayout mConstrainLayout = itemView.findViewById(R.id.cl_holder);
             View bar = itemView.findViewById(R.id.v_bar);
             ConstraintLayout.LayoutParams lp = (ConstraintLayout.LayoutParams) bar.getLayoutParams();
-            lp.matchConstraintPercentHeight = (float) item.getExpectedPeople() / (float) MaxExpectedPeople;
-            itemView.setLayoutParams(lp);
+            float bar_percent = (float) (Math.min((float) item.getExpectedPeople() / (float) MaxExpectedPeople, 1) - 0.08);
+            lp.matchConstraintPercentHeight = bar_percent;
+            bar.setLayoutParams(lp);
             itemView.setOnClickListener(v -> listener.onClick(item));
+            TextView expected = itemView.findViewById(R.id.txt_expected);
+            if (bar_percent > 0.15) {
+                expected.setText(item.getExpectedPeople() + "");
+            } else {
+                expected.setVisibility(View.INVISIBLE);
+            }
         }
     }
 }

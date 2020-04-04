@@ -42,7 +42,6 @@ public class HomeActivity extends AppCompatActivity {
         });
         findViewById(R.id.btn_myBloodCenters).setOnClickListener(v -> {
             //TODO: Add donation history / favourites
-            startActivity(new Intent(this, AppointmentActivity.class));
         });
         findViewById(R.id.btn_info).setOnClickListener(v -> {
             //TODO: info Screen

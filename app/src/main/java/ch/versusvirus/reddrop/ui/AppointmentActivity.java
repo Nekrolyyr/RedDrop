@@ -7,8 +7,10 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.sql.Time;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Locale;
 
 import ch.versusvirus.reddrop.R;
 import ch.versusvirus.reddrop.logic.model.AppointmentTimeslot;
@@ -28,18 +30,27 @@ public class AppointmentActivity extends AppCompatActivity {
 
         RecyclerView barChart = findViewById(R.id.rv_barChart);
         timeBarAdapter = TimeBarAdapter.getDefaultInstance(client -> {
-            //TODO: open next activity
+            //TODO: select timeslot
         });
         barChart.setLayoutManager(new LinearLayoutManager(this, RecyclerView.HORIZONTAL, false));
         barChart.setAdapter(timeBarAdapter);
 
-        ArrayList<AppointmentTimeslot> mockList = new ArrayList<>();
-        mockList.add(new AppointmentTimeslot(new Time((8 * 60 + 15 * 60) * 1000), 5));
-        mockList.add(new AppointmentTimeslot(new Time((8 * 60 + 45 * 60) * 1000), 6));
-        mockList.add(new AppointmentTimeslot(new Time((9 * 60 + 15 * 60) * 1000), 7));
-        mockList.add(new AppointmentTimeslot(new Time((10 * 60 + 15 * 60) * 1000), 16));
-        mockList.add(new AppointmentTimeslot(new Time((12 * 60 + 0 * 60) * 1000), 10));
-        timeBarAdapter.submitList(mockList);
-        timeBarAdapter.notifyDataSetChanged();
+        try {
+            ArrayList<AppointmentTimeslot> mockList = new ArrayList<>();
+            SimpleDateFormat format = new SimpleDateFormat("hh:mm", Locale.GERMANY);
+            mockList.add(new AppointmentTimeslot(format.parse("08:00"), 5));
+            mockList.add(new AppointmentTimeslot(format.parse("08:30"), 6));
+            mockList.add(new AppointmentTimeslot(format.parse("09:00"), 0));
+            mockList.add(new AppointmentTimeslot(format.parse("09:30"), 15));
+            mockList.add(new AppointmentTimeslot(format.parse("10:00"), 10));
+            mockList.add(new AppointmentTimeslot(format.parse("10:30"), 15));
+            mockList.add(new AppointmentTimeslot(format.parse("11:00"), 10));
+            mockList.add(new AppointmentTimeslot(format.parse("11:30"), 1));
+            mockList.add(new AppointmentTimeslot(format.parse("12:00"), 2));
+            timeBarAdapter.submitList(mockList);
+            timeBarAdapter.notifyDataSetChanged();
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
     }
 }
