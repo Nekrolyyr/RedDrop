@@ -10,7 +10,7 @@ public class BloodBarometerParams {
         return location;
     }
 
-    public class Builder {
+    public static class Builder {
         BloodBarometerParams bloodBarometerParams;
 
         public Builder() {
@@ -23,7 +23,7 @@ public class BloodBarometerParams {
         }
 
         public BloodBarometerParams build() {
-            if (location == null) {
+            if (bloodBarometerParams.location == null) {
                 return null;
             }
             return bloodBarometerParams;

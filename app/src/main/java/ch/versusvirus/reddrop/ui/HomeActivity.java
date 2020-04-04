@@ -23,7 +23,7 @@ public class HomeActivity extends AppCompatActivity {
         Toolbar myToolbar = findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
 
-        reminder = new Reminder(this, "1001");
+        reminder = new Reminder(getApplicationContext());
         findViewById(R.id.btn_notification_test).setOnClickListener(v -> {
             NotificationManagerCompat notificationManager = NotificationManagerCompat.from(this);
             String title = "Blood Donation Request";
