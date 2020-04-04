@@ -8,10 +8,6 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
-
-import java.util.Vector;
-import java.util.stream.IntStream;
-
 import ch.versusvirus.reddrop.R;
 import ch.versusvirus.reddrop.logic.model.Questions;
 
@@ -19,15 +15,13 @@ import ch.versusvirus.reddrop.logic.model.Questions;
 public class SurveyActivity extends AppCompatActivity {
 
     Button btn_yes, btn_no;
-
     TextView text_field_question;
 
     private Questions mQuestions = new Questions();
     private String mAnswer;
     private int mQuestionsLength = mQuestions.mQuestions.length;
     private int mCounter = 0;
-    private int fraction = (100/mQuestionsLength);
-
+    private float fraction = (100/mQuestionsLength);
     private int[] mSurvey = new int[mQuestionsLength];
 
     @Override
@@ -35,15 +29,10 @@ public class SurveyActivity extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_survey);
-        /*findViewById(R.id.btn_submit).setOnClickListener(v -> {
-            startActivity(new Intent(this, LocationActivity.class));
-        });*/
 
         btn_yes = (Button) findViewById(R.id.btn_yes);
         btn_no = (Button) findViewById(R.id.btn_no);
-
         text_field_question = (TextView) findViewById(R.id.text_field_question);
-
 
         updateQuestion(mCounter);
         mCounter++;
@@ -61,13 +50,12 @@ public class SurveyActivity extends AppCompatActivity {
                 }
                 if ((mCounter) == mQuestionsLength) {
                     Intent intent = new Intent(SurveyActivity.this, SurveyResultActivity.class);
-                    intent.putExtra("Results",mSurvey);
+                    intent.putExtra("RESULTS",mSurvey);
                     startActivity(intent);
-                } else{
+                } else {
                     moveBar.setProgress( (int)(fraction * mCounter));
                     updateQuestion(mCounter);
                     mCounter++;}
-
             }
         });
 
@@ -89,7 +77,6 @@ public class SurveyActivity extends AppCompatActivity {
                     mCounter++;}
             }
         });
-
 
     }
 

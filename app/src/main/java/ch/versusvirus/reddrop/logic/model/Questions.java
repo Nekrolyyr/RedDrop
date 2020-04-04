@@ -3,13 +3,13 @@ package ch.versusvirus.reddrop.logic.model;
 public class Questions {
 
     public String mQuestions[] = {
-            "Sind Sie über 50 kg schwer?",
-            "Hatten Sie in den letzten 72 Stunden eine dentalhygienische oder zahnärztliche Behandlung?",
-            "Fühlen Sie sich zurzeit gesund und haben Sie keine Anzeichen einer Erkältung oder Fieber?",
-            "Haben Sie in den letzten 4 Wochen Medikamente – auch rezeptfreie – eingenommen (z.B Tabletten, Spritzen, Zäpfchen), einen medizinischen Eingriff oder eine Impfung vorgenommen?",
-            "Waren Sie in den letzten sechs Monaten ausserhalb der Schweiz?",
-            "Hatten Sie sexuelle Kontakte mit wechselnden Partnerinnen oder Partnern in den vergangenen 12 Monaten oder mit einer neuen Partnerin/einem neuen Partner in den letzten 4 Monaten?",
-            "Hatten Sie in den letzten vier Monaten ein neues Piercing/ eine neue Tätowierung oder eine Akupunktur-Behandlung?"
+            "Are you over 50 kg?",
+            "Have you had dental hygiene or dental treatment in the past 72 hours?",
+            "Do you currently feel healthy and have no signs of a cold or fever?",
+            "Have you taken medication, also without prescription, (e.g. tablets, syringes, suppositories), medical intervention or vaccination in the past 4 weeks?",
+            "Have you been outside Switzerland in the past six months?",
+            "Have you had sexual contacts with changing partners in the past 12 months or with a new partner in the past 4 months?",
+            "Have you had a new piercing / tattoo or acupuncture treatment in the past four months?"
     };
 
     private String mChoice[][] = {

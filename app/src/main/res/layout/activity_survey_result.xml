@@ -14,7 +14,7 @@
         android:layout_margin="10dp"
         android:layout_marginTop="140dp"
         android:fontFamily="sans-serif-light"
-        android:text="Survey_Result"
+        android:text="Survey Result"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.526"
@@ -47,17 +47,17 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent" />
 
+
     <TextView
         android:id="@+id/text_field_result"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="100dp"
-        android:layout_marginBottom="432dp"
+        android:layout_width="350dp"
+        android:layout_height="200dp"
+        android:layout_marginBottom="200dp"
         android:text="Fail/Success"
         android:textSize="28sp"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.373"
         app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

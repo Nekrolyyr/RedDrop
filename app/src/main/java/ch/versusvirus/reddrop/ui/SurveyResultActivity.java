@@ -6,10 +6,6 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
-
-import java.util.Vector;
-import java.util.stream.IntStream;
-
 import ch.versusvirus.reddrop.R;
 
 
@@ -30,19 +26,15 @@ public class SurveyResultActivity extends AppCompatActivity {
         Bundle bundle = intent.getExtras();
         int results[] = (int[]) bundle.getIntArray("RESULTS");
 
-
-        //int results[]= new int[] {1,2,3,4,5,6,7,8,9,10};
-
-
         int sum_test = sumArray(results);
 
         if (sum_test==0) {
-            Result_str="You are egligible to donate";
-        } else if (sum_test==1) {
-            Result_str="There is only one issue:";
+            Result_str="Great! You are eligible to donate.";
+        //} else if (sum_test==1) {
+            //Result_str="There is only one issue:";
             //TODO: Show the wrong question
         } else {
-            Result_str="Unfortunately you are not egligible to donate";
+            Result_str="Unfortunately you are not eligible to donate.";
         }
 
         super.onCreate(savedInstanceState);
