@@ -15,7 +15,7 @@ public class LocationSearchParams {
         return radius;
     }
 
-    public class Builder {
+    public static class Builder {
         LocationSearchParams locationSearch;
 
         public Builder() {
@@ -33,7 +33,7 @@ public class LocationSearchParams {
         }
 
         public LocationSearchParams build() {
-            if (PLZ == null || radius == null) {
+            if (locationSearch.radius == null) {
                 return null;
             }
             return locationSearch;
