@@ -7,8 +7,8 @@ public class AppointmentTimeslot {
     private Date time;
     private int expectedPeople;
 
-    public AppointmentTimeslot(Date time, int expectedPeople) {
-        this.time = time;
+    public AppointmentTimeslot(long timeInMillis, int expectedPeople) {
+        this.time = new Date(timeInMillis);
         this.expectedPeople = expectedPeople;
     }
 

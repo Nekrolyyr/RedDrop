@@ -1,6 +1,7 @@
 package ch.versusvirus.reddrop.ui;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -13,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import ch.versusvirus.reddrop.R;
 import ch.versusvirus.reddrop.data_access.RemoteLoader;
+import ch.versusvirus.reddrop.logic.model.DonationListEntry;
 import ch.versusvirus.reddrop.logic.model.LocationSearchParams;
 import ch.versusvirus.reddrop.logic.model.User;
 import ch.versusvirus.reddrop.ui.adapter.LocationEntryAdapter;
@@ -32,10 +34,22 @@ public class LocationActivity extends AppCompatActivity {
         setSupportActionBar(myToolbar);
 
         RecyclerView locationView = findViewById(R.id.rv_location);
-        locationEntryAdapter = LocationEntryAdapter.getDefaultInstance(entry -> {
-            Intent intent = new Intent(this, AppointmentActivity.class);
-            intent.putExtra("LOCATION", entry.asJson());
+        locationEntryAdapter = LocationEntryAdapter.getDefaultInstance(new LocationEntryAdapter.ClickListener() {
+            @Override
+            public void onClick(DonationListEntry entry) {
+                Intent intent = new Intent(getApplicationContext(), AppointmentActivity.class);
+                intent.putExtra("LOCATION", entry.asJson());
+                startActivity(intent);
+            }
+
+            @Override
+            public void onInfoClick(DonationListEntry entry) {
+                Intent intent = new Intent(Intent.ACTION_VIEW);
+                intent.setData(Uri.parse(entry.getInfoURL()));
+                startActivity(intent);
+            }
         });
+
         locationView.setLayoutManager(new LinearLayoutManager(this, RecyclerView.VERTICAL, false));
         locationView.setAdapter(locationEntryAdapter);
 
