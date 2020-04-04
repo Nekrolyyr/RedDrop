@@ -51,10 +51,19 @@
         android:layout_height="60dp"
         android:layout_marginBottom="256dp"
         android:backgroundTint="@color/colorAccent"
-        android:text="Yest"
+        android:text="Yes"
         android:textColor="@color/colorPrimary"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/text_field_question"
+        android:layout_width="409dp"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        android:visibility="visible"
+        tools:layout_editor_absoluteX="1dp"
+        tools:layout_editor_absoluteY="206dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>
