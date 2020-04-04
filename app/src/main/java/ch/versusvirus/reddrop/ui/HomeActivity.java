@@ -2,6 +2,7 @@ package ch.versusvirus.reddrop.ui;
 
 import android.app.Notification;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
 import android.widget.ProgressBar;
@@ -10,6 +11,8 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.NotificationManagerCompat;
+
+import org.w3c.dom.Text;
 
 import java.text.MessageFormat;
 
@@ -60,7 +63,15 @@ public class HomeActivity extends AppCompatActivity {
             startActivity(new Intent(this, LocationActivity.class));
         });
 
-        getBloodData("zuerich", "A+");
+        SharedPreferences sp = getSharedPreferences(ProfileActivity.MyPREFERENCES, MODE_PRIVATE);
+        String region = sp.getString("Region", "gesamt");
+        String bloodType = sp.getString("BloodType", "A+");
+
+        TextView bloodTypeText = findViewById(R.id.txt_home_blood_type);
+        TextView bloodRegion = findViewById(R.id.txt_home_location);
+        bloodTypeText.setText(bloodType);
+        bloodRegion.setText(region);
+        getBloodData(region, bloodType);
     }
 
     private void getBloodData(String location, String bloodType) {
