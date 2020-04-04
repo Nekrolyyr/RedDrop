@@ -55,16 +55,16 @@ public class SurveyActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if (btn_yes.getText() == mAnswer) {
-                    mSurvey[mCounter] = 0;
+                    mSurvey[mCounter-1] = 0;
                 } else {
-                    mSurvey[mCounter] = 1;
+                    mSurvey[mCounter-1] = 1;
                 }
                 if ((mCounter) == mQuestionsLength) {
                     Intent intent = new Intent(SurveyActivity.this, SurveyResultActivity.class);
                     intent.putExtra("Results",mSurvey);
                     startActivity(intent);
                 } else{
-                    moveBar.setProgress( (fraction * mCounter));
+                    moveBar.setProgress( (int)(fraction * mCounter));
                     updateQuestion(mCounter);
                     mCounter++;}
 
@@ -75,16 +75,16 @@ public class SurveyActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if (btn_no.getText() == mAnswer) {
-                    mSurvey[mCounter] = 0;
+                    mSurvey[mCounter-1] = 0;
                 } else {
-                    mSurvey[mCounter] = 1;
+                    mSurvey[mCounter-1] = 1;
                 }
                 if ((mCounter) == mQuestionsLength) {
                     Intent intent = new Intent(SurveyActivity.this, SurveyResultActivity.class);
                     intent.putExtra("RESULTS",mSurvey);
                     startActivity(intent);
                 } else {
-                    moveBar.setProgress( (fraction * mCounter));
+                    moveBar.setProgress( (int)(fraction * mCounter));
                     updateQuestion(mCounter);
                     mCounter++;}
             }
