@@ -7,21 +7,40 @@
     tools:context=".ui.ProfileActivity">
 
     <EditText
+        android:id="@+id/editText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="date"
+        tools:layout_editor_absoluteX="146dp"
+        tools:layout_editor_absoluteY="316dp" />
+
+    <TextView
+        android:id="@+id/textView_bloodtype"
+        android:layout_width="96dp"
+        android:layout_height="47dp"
+        android:text="Blood type (optional)"
+        android:textSize="18sp"
+        tools:layout_editor_absoluteX="29dp"
+        tools:layout_editor_absoluteY="316dp" />
+
+    <EditText
         android:id="@+id/editText5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="date"
         tools:layout_editor_absoluteX="146dp"
-        tools:layout_editor_absoluteY="196dp" />
+        tools:layout_editor_absoluteY="246dp" />
 
     <TextView
-        android:id="@+id/textView7"
+        android:id="@+id/textView_zipcode"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Test"
-        tools:layout_editor_absoluteX="39dp"
-        tools:layout_editor_absoluteY="209dp" />
+        android:text="Zip code"
+        android:textSize="24sp"
+        tools:layout_editor_absoluteX="29dp"
+        tools:layout_editor_absoluteY="246dp" />
 
     <Button
         android:id="@+id/btn_saveLife"
