@@ -1,11 +1,14 @@
 package ch.versusvirus.reddrop.ui;
 
 import android.app.Notification;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -45,10 +48,6 @@ public class InfoActivity extends AppCompatActivity {
 
         reminder = new Reminder(getApplicationContext());
 
-        findViewById(R.id.btn_donation_info).setOnClickListener(view -> {
-            // TODO: Donation Info
-        });
-
         zero_p = findViewById(R.id.blood_0p);
         zero_n = findViewById(R.id.blood_0n);
         a_p = findViewById(R.id.blood_Ap);
@@ -60,6 +59,8 @@ public class InfoActivity extends AppCompatActivity {
 
         lastUpdated = findViewById(R.id.txt_blood_lastUpdated);
         setupSpinner();
+
+        setupButtons();
     }
 
     private void setupSpinner() {
@@ -71,6 +72,7 @@ public class InfoActivity extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 getBloodData(regions[i]);
+                ((TextView) adapterView.getChildAt(0)).setTextSize(12);
             }
 
             @Override
@@ -78,6 +80,16 @@ public class InfoActivity extends AppCompatActivity {
 
             }
         });
+    }
+
+    private void setupButtons(){
+        Button donationInfo = findViewById(R.id.btn_donation_info);
+        Button whyDonate = findViewById(R.id.btn_why_donate);
+        Button magazine = findViewById(R.id.btn_magazine);
+
+        donationInfo.setOnClickListener(view -> goToUrl("https://www.blutspende.ch/de/blutspende"));
+        whyDonate.setOnClickListener(view -> goToUrl("https://www.blutspende.ch/de/spenderinfos/warum-blut-spenden"));
+        magazine.setOnClickListener(view -> goToUrl("https://www.blutspende.ch/de/magazin"));
     }
 
     private void getBloodData(String location) {
@@ -140,5 +152,11 @@ public class InfoActivity extends AppCompatActivity {
 
     private int notificationNumber(){
         return notification++;
+    }
+
+    private void goToUrl (String url) {
+        Uri uriUrl = Uri.parse(url);
+        Intent launchBrowser = new Intent(Intent.ACTION_VIEW, uriUrl);
+        startActivity(launchBrowser);
     }
 }

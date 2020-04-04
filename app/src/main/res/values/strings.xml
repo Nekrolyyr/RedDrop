@@ -3,6 +3,8 @@
     <string name="channel_name">reddrop_notifications</string>
     <string name="channel_description">reminders_notifications</string>
     <string name="donation_info">Donation Info</string>
-    <string name="bloodbarometer">Blood-Barometer</string>
+    <string name="bloodbarometer">Current blood supplies in Switzerland</string>
     <string name="last_updated">Last updated:</string>
+    <string name="why_donate">Why donate?</string>
+    <string name="magazin">Magazin</string>
 </resources>
