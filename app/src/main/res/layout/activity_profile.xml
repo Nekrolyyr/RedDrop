@@ -6,22 +6,20 @@
     android:layout_height="match_parent"
     tools:context=".ui.ProfileActivity">
 
-    <EditText
-        android:id="@+id/editText5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="date"
-        tools:layout_editor_absoluteX="146dp"
-        tools:layout_editor_absoluteY="196dp" />
-
     <TextView
         android:id="@+id/textView7"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Test"
-        tools:layout_editor_absoluteX="39dp"
-        tools:layout_editor_absoluteY="209dp" />
+        android:layout_marginStart="35dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginBottom="510dp"
+        android:text="Gender *"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/radioButton"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView1" />
 
     <Button
         android:id="@+id/btn_saveLife"
@@ -40,18 +38,68 @@
         android:id="@+id/dateOfBirth"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="110dp"
+        android:layout_marginEnd="45dp"
         android:ems="10"
         android:inputType="date"
-        tools:layout_editor_absoluteX="146dp"
-        tools:layout_editor_absoluteY="76dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.62"
+        app:layout_constraintStart_toEndOf="@+id/textView1"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/textView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Birthday"
+        android:layout_marginStart="29dp"
+        android:layout_marginTop="120dp"
+        android:layout_marginEnd="15dp"
+        android:text="Birthday *"
         android:textSize="24sp"
-        tools:layout_editor_absoluteX="29dp"
-        tools:layout_editor_absoluteY="76dp" />
+        app:layout_constraintEnd_toStartOf="@+id/dateOfBirth"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <RadioButton
+        android:id="@+id/radioButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="27dp"
+        android:layout_marginEnd="12dp"
+        android:layout_marginBottom="362dp"
+        android:text="Male"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toTopOf="@+id/btn_saveLife"
+        app:layout_constraintEnd_toStartOf="@+id/radioButton2"
+        app:layout_constraintStart_toEndOf="@+id/textView7"
+        app:layout_constraintTop_toBottomOf="@+id/dateOfBirth" />
+
+    <RadioButton
+        android:id="@+id/radioButton2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="27dp"
+        android:layout_marginEnd="48dp"
+        android:layout_marginBottom="362dp"
+        android:text="Female"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toTopOf="@+id/btn_saveLife"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/radioButton"
+        app:layout_constraintTop_toBottomOf="@+id/dateOfBirth" />
+
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="229dp"
+        android:text="My Profile"
+        android:textSize="36sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
