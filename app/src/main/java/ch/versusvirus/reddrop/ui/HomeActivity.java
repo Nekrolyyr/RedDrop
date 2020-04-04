@@ -3,6 +3,7 @@ package ch.versusvirus.reddrop.ui;
 import android.app.Notification;
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;

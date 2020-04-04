@@ -16,6 +16,7 @@
         <activity android:name=".ui.AppointmentActivity" />
         <activity android:name=".ui.LocationActivity" />
         <activity android:name=".ui.SurveyActivity" />
+        <activity android:name=".ui.SurveyResultActivity" />
         <activity android:name=".ui.HomeActivity" />
         <activity android:name=".ui.WellcomeActivity">
             <intent-filter>
