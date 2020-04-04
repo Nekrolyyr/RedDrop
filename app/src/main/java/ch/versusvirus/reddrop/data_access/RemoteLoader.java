@@ -6,8 +6,11 @@ import java.io.IOException;
 import java.util.Collections;
 import java.util.List;
 
+import ch.versusvirus.reddrop.logic.model.AppointmentGetterParams;
+import ch.versusvirus.reddrop.logic.model.AppointmentSetterParams;
 import ch.versusvirus.reddrop.logic.model.BloodBarometer;
 import ch.versusvirus.reddrop.logic.model.BloodBarometerParams;
+import ch.versusvirus.reddrop.logic.model.Appointment;
 import ch.versusvirus.reddrop.logic.model.DonationListEntry;
 import ch.versusvirus.reddrop.logic.model.LocationSearchParams;
 import okhttp3.Call;
@@ -50,6 +53,46 @@ public abstract class RemoteLoader {
                     resultAction.put(null);
                 } else {
                     BloodBarometerParser parser = new BloodonorBarometerParser();
+                    resultAction.put(parser.parse(response.body().string()));
+                }
+            }
+        });
+    }
+
+    public static void getAppointmentStatusAsync(AppointmentGetterParams params, RemoteLoaderResult<Appointment> resultAction) {
+        AppointmentGetterSource source = new OkHttpSource();
+        source.getAppointmentStatus(params, new Callback() {
+            @Override
+            public void onFailure(@NotNull Call call, @NotNull IOException e) {
+                resultAction.put(null);
+            }
+
+            @Override
+            public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
+                if (response.body() == null) {
+                    resultAction.put(null);
+                } else {
+                    AppointmentParser parser = new BloodonorAppointmentParser();
+                    resultAction.put(parser.parse(response.body().string()));
+                }
+            }
+        });
+    }
+
+    public static void registerAppointmentActionAsynv(AppointmentSetterParams params, RemoteLoaderResult<Appointment> resultAction) {
+        AppointmentSetterSource source = new OkHttpSource();
+        source.registerAppointmentAction(params, new Callback() {
+            @Override
+            public void onFailure(@NotNull Call call, @NotNull IOException e) {
+                resultAction.put(null);
+            }
+
+            @Override
+            public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
+                if (response.body() == null) {
+                    resultAction.put(null);
+                } else {
+                    AppointmentParser parser = new BloodonorAppointmentParser();
                     resultAction.put(parser.parse(response.body().string()));
                 }
             }
