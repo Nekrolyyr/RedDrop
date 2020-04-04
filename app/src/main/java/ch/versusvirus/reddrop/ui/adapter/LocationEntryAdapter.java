@@ -66,7 +66,7 @@ public class LocationEntryAdapter extends ListAdapter<DonationListEntry, Locatio
             date.setText(entry.getWeekday() + ", " + entry.getDate());
             TextView organizer = itemView.findViewById(R.id.txt_organizer);
             organizer.setText(entry.getAdditionalInfo());
-            TextView location = itemView.findViewById(R.id.txt_location);
+            TextView location = itemView.findViewById(R.id.txt_home_location);
             location.setText(entry.getVillageInfo());
             TextView distance = itemView.findViewById(R.id.txt_distance_value);
             distance.setText("0 KM");
