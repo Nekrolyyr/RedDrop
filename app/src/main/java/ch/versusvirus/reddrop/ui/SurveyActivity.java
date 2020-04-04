@@ -11,6 +11,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.Random;
+import java.util.Vector;
 
 import ch.versusvirus.reddrop.R;
 import ch.versusvirus.reddrop.logic.model.Questions;
@@ -25,6 +26,8 @@ public class SurveyActivity extends AppCompatActivity {
     private String mAnswer;
     private int mQuestionsLength = mQuestions.mQuestions.length;
     private int mScore = 0;
+    private int mCounter = 0;
+    private Vector<Integer> mSurvey = new Vector<Integer>(mQuestionsLength);
 
     Random r;
 
@@ -43,16 +46,19 @@ public class SurveyActivity extends AppCompatActivity {
 
         text_field_question = (TextView) findViewById(R.id.text_field_question);
 
-        updateQuestion(r.nextInt(mQuestionsLength));
+        updateQuestion(mCounter);
+        mCounter++;
 
         btn_yes.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (btn_yes.getText() == mAnswer) {
+                if (btn_yes.getText() == mAnswer && mCounter < mQuestionsLength) {
                     mScore++;
-                    updateQuestion(r.nextInt(mQuestionsLength));
+                    mSurvey.add(0);
+                    updateQuestion(mCounter);
+                    mCounter++;
                 } else {
-                    gameOver();
+                    mSurvey.add(1);
                 }
             }
         });
@@ -60,11 +66,13 @@ public class SurveyActivity extends AppCompatActivity {
         btn_no.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (btn_no.getText() == mAnswer) {
+                if (btn_no.getText() == mAnswer && mCounter < mQuestionsLength) {
                     mScore++;
-                    updateQuestion(r.nextInt(mQuestionsLength));
+                    mSurvey.add(0);
+                    updateQuestion(mCounter);
+                    mCounter++;
                 } else {
-                    gameOver();
+                    mSurvey.add(1);
                 }
             }
         });
@@ -74,9 +82,7 @@ public class SurveyActivity extends AppCompatActivity {
         text_field_question.setText(mQuestions.getQuestion(num));
         btn_yes.setText(mQuestions.getChoice1(num));
         btn_no.setText(mQuestions.getChoice2(num));
-
         mAnswer = mQuestions.getCorretAnswer(num);
-
     }
 
     private void gameOver() {
