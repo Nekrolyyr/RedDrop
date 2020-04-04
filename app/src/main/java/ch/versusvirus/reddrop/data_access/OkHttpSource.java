@@ -32,19 +32,21 @@ class OkHttpSource implements LocationSource, BloodBarometerSource, AppointmentG
     }
 
     private String buildLocationURL(LocationSearchParams params) {
-        return locationsURL.replace("{{term}}", params.getPLZ()).replace("{{radius}}", params.getRadius());
+        String URL = locationsURL.replace("{{term}}", params.getPLZ()).replace("{{radius}}", params.getRadius());
+        System.out.println("HTTP GET TO " + URL);
+        return URL;
     }
 
     @Override
     public void getBloodStatus(BloodBarometerParams params, Callback callback) {
         Request request = new Request.Builder()
-                .url(buildbloodBarometerURL(params))
+                .url(buildBloodBarometerURL(params))
                 .get()
                 .build();
         client.newCall(request).enqueue(callback);
     }
 
-    private String buildbloodBarometerURL(BloodBarometerParams params) {
+    private String buildBloodBarometerURL(BloodBarometerParams params) {
         return bloodBarometerURL.replace("{{region}}", params.getLocation());
     }
 

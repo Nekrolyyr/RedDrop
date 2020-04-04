@@ -3,6 +3,7 @@ package ch.versusvirus.reddrop.logic.model;
 public class LocationSearchParams {
     private String PLZ;
     private String radius;
+    private boolean complete = true;
 
     protected LocationSearchParams() {
     }
@@ -13,6 +14,10 @@ public class LocationSearchParams {
 
     public String getRadius() {
         return radius;
+    }
+
+    public boolean isComplete() {
+        return complete;
     }
 
     public static class Builder {
@@ -33,8 +38,8 @@ public class LocationSearchParams {
         }
 
         public LocationSearchParams build() {
-            if (locationSearch.radius == null) {
-                return null;
+            if ((locationSearch.radius == null || locationSearch.radius.length() <= 0) || (locationSearch.PLZ == null || locationSearch.PLZ.length() <= 3)) {
+                locationSearch.complete = false;
             }
             return locationSearch;
         }

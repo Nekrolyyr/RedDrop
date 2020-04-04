@@ -20,6 +20,9 @@ import okhttp3.Response;
 public abstract class RemoteLoader {
 
     public static void getLocationsAsync(LocationSearchParams searchParams, RemoteLoaderResult<List<DonationListEntry>> resultAction) {
+        if (searchParams == null || !searchParams.isComplete()) {
+            return;
+        }
         LocationSource source = new OkHttpSource();
         source.getLocations(searchParams, new Callback() {
             @Override
@@ -40,6 +43,9 @@ public abstract class RemoteLoader {
     }
 
     public static void getBloodBarometerAsync(BloodBarometerParams searchParams, RemoteLoaderResult<BloodBarometer> resultAction) {
+        if (searchParams == null) {
+            return;
+        }
         BloodBarometerSource source = new OkHttpSource();
         source.getBloodStatus(searchParams, new Callback() {
             @Override
