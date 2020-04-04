@@ -33,16 +33,20 @@ public class DonationListParser implements LocationParser {
             String weekday = info.selectFirst("div.weekday").text();
             String date = info.selectFirst("div.date").text();
             String donationType = info.selectFirst("div.type").text();
-            String villageInfo = location.selectFirst("h3.mb-1").text();
+            String villageInfoFull = location.selectFirst("h3.mb-1").text();
+            String villagePLZ = villageInfoFull.substring(0, villageInfoFull.indexOf(' '));
+            String villageInfo = villageInfoFull.substring(villageInfoFull.indexOf(' ') + 1);
             String additionalInfo = location.selectFirst("p.mb-0").text();
             String timeRange = location.selectFirst("div.font-weight-bold").text();
+            String timeStart = timeRange.substring(0, timeRange.indexOf(" Uhr - "));
+            String timeEnd = timeRange.substring(timeRange.indexOf(" Uhr - ") + 7, timeRange.length() - 4);
 
             // Get URL and append root of website
             String infoURLEnd = urlDiv.selectFirst("a.btn").attr("href");
             String infoURL = "https://www.blutspende.ch" + infoURLEnd;
 
             // Create List element and append
-            DonationListEntry donListEntry = new DonationListEntry(villageInfo, additionalInfo, timeRange, weekday,
+            DonationListEntry donListEntry = new DonationListEntry(villageInfo, villagePLZ, additionalInfo, timeStart, timeEnd, weekday,
                     date, donationType, infoURL);
             donationList.add(donListEntry);
 
