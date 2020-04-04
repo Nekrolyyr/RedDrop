@@ -48,7 +48,7 @@ public class HomeActivity extends AppCompatActivity {
             //TODO: Add donation history / favourites
         });
         findViewById(R.id.btn_info).setOnClickListener(v -> {
-            //TODO: info Screen
+            startActivity(new Intent(this, InfoActivity.class));
         });
         findViewById(R.id.btn_loaction).setOnClickListener(v -> {
             startActivity(new Intent(this, LocationActivity.class));
