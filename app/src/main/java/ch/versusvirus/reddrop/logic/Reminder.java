@@ -10,17 +10,18 @@ import android.os.Build;
 
 import androidx.core.app.NotificationCompat;
 
+import java.util.Objects;
+
 import ch.versusvirus.reddrop.R;
 
 public class Reminder {
 
-    private final String CHANNEL_ID;
+    private static final String CHANNEL_ID = "1001";
 
     private Context context;
 
-    public Reminder(Context context, String CHANNEL_ID){
+    public Reminder(Context context){
         this.context = context;
-        this.CHANNEL_ID = CHANNEL_ID;
         createNotificationChannel();
     }
 
@@ -28,6 +29,9 @@ public class Reminder {
         // Create the NotificationChannel, but only on API 26+ because
         // the NotificationChannel class is new and not in the support library
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            if(Objects.requireNonNull(context.getSystemService(NotificationManager.class)).getNotificationChannel(CHANNEL_ID) == null){
+                return;
+            }
             CharSequence name = context.getString(R.string.channel_name);
             String description = context.getString(R.string.channel_description);
             int importance = NotificationManager.IMPORTANCE_HIGH;
@@ -38,6 +42,7 @@ public class Reminder {
             NotificationManager notificationManager = context.getSystemService(NotificationManager.class);
             assert notificationManager != null;
             notificationManager.createNotificationChannel(channel);
+
         }
     }
 
@@ -62,6 +67,7 @@ public class Reminder {
                 .setStyle(new NotificationCompat.BigTextStyle()
                         .bigText(content))
                 .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+                .setAutoCancel(true)
                 .build();
     }
 

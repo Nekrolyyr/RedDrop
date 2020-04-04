@@ -23,7 +23,7 @@ public class HomeActivity extends AppCompatActivity {
         Toolbar myToolbar = findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
 
-        reminder = new Reminder(this, "1001");
+        reminder = new Reminder(getApplicationContext());
         findViewById(R.id.btn_notification_test).setOnClickListener(v -> {
             NotificationManagerCompat notificationManager = NotificationManagerCompat.from(this);
             String title = "Blood Donation Request";
@@ -44,7 +44,7 @@ public class HomeActivity extends AppCompatActivity {
             //TODO: Add donation history / favourites
         });
         findViewById(R.id.btn_info).setOnClickListener(v -> {
-            //TODO: info Screen
+            startActivity(new Intent(this, InfoActivity.class));
         });
         findViewById(R.id.btn_loaction).setOnClickListener(v -> {
             startActivity(new Intent(this, LocationActivity.class));
