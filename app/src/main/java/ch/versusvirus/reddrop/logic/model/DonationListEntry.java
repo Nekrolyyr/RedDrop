@@ -2,13 +2,15 @@ package ch.versusvirus.reddrop.logic.model;
 
 public class DonationListEntry {
 
-    private String villageInfo, additionalInfo, timeRange, weekday, date, donationType, infoURL;
+    private String villageInfo, villagePLZ, additionalInfo, timeStart, timeEnd, weekday, date, donationType, infoURL;
 
-    public DonationListEntry(String villageInfo, String additionalInfo, String timeRange, String weekday, String date,
+    public DonationListEntry(String villageInfo, String villagePLZ, String additionalInfo, String timeStart, String timeEnd, String weekday, String date,
                              String donationType, String infoURL) {
         this.villageInfo = villageInfo;
+        this.villagePLZ = villagePLZ;
         this.additionalInfo = additionalInfo;
-        this.timeRange = timeRange;
+        this.timeStart = timeStart;
+        this.timeEnd = timeEnd;
         this.weekday = weekday;
         this.date = date;
         this.donationType = donationType;
@@ -19,12 +21,20 @@ public class DonationListEntry {
         return villageInfo;
     }
 
+    public String getVillagePLZ() {
+        return villagePLZ;
+    }
+
     public String getAdditionalInfo() {
         return additionalInfo;
     }
 
-    public String getTimeRange() {
-        return timeRange;
+    public String getTimeStart() {
+        return timeStart;
+    }
+
+    public String getTimeEnd() {
+        return timeEnd;
     }
 
     public String getWeekday() {
