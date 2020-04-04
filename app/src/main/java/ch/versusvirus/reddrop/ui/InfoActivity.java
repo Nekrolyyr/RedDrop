@@ -82,7 +82,7 @@ public class InfoActivity extends AppCompatActivity {
         });
     }
 
-    private void setupButtons(){
+    private void setupButtons() {
         Button donationInfo = findViewById(R.id.btn_donation_info);
         Button whyDonate = findViewById(R.id.btn_why_donate);
         Button magazine = findViewById(R.id.btn_magazine);
@@ -150,11 +150,11 @@ public class InfoActivity extends AppCompatActivity {
         return new String[]{title, message};
     }
 
-    private int notificationNumber(){
+    private int notificationNumber() {
         return notification++;
     }
 
-    private void goToUrl (String url) {
+    private void goToUrl(String url) {
         Uri uriUrl = Uri.parse(url);
         Intent launchBrowser = new Intent(Intent.ACTION_VIEW, uriUrl);
         startActivity(launchBrowser);
