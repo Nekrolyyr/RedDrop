@@ -9,9 +9,11 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.Vector;
+import java.util.stream.IntStream;
 
 import ch.versusvirus.reddrop.R;
 import ch.versusvirus.reddrop.logic.model.Questions;
+
 
 public class SurveyActivity extends AppCompatActivity {
 
@@ -25,9 +27,9 @@ public class SurveyActivity extends AppCompatActivity {
     private int mCounter = 0;
     private Vector<Integer> mSurvey = new Vector<Integer>(mQuestionsLength);
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_survey);
         /*findViewById(R.id.btn_submit).setOnClickListener(v -> {
@@ -38,6 +40,7 @@ public class SurveyActivity extends AppCompatActivity {
         btn_no = (Button) findViewById(R.id.btn_no);
 
         text_field_question = (TextView) findViewById(R.id.text_field_question);
+
 
         updateQuestion(mCounter);
         mCounter++;
