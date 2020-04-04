@@ -14,7 +14,7 @@ public class HomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
         findViewById(R.id.btn_donate).setOnClickListener(v -> {
-            startActivity(new Intent(this, SurveyResultActivity.class));
+            startActivity(new Intent(this, SurveyActivity.class));
         });
         findViewById(R.id.btn_profile).setOnClickListener(v -> {
             startActivity(new Intent(this, ProfileActivity.class));

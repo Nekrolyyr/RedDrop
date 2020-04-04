@@ -21,19 +21,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/btn_donate"
-        android:layout_width="409dp"
-        android:layout_height="60dp"
-        android:layout_marginBottom="316dp"
-        android:backgroundTint="@color/colorAccent"
-        android:text="Go to donation"
-        android:textColor="@color/colorPrimary"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent" />
-
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -47,37 +34,11 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/btn_redo"
-        android:layout_width="409dp"
-        android:layout_height="60dp"
-        android:layout_marginBottom="232dp"
-        android:backgroundTint="@color/colorAccent"
-        android:text="Redo the the test"
-        android:textColor="@color/colorPrimary"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <Button
-        android:id="@+id/btn_home"
-        android:layout_width="409dp"
-        android:layout_height="60dp"
-        android:layout_marginBottom="148dp"
-        android:backgroundTint="@color/colorAccent"
-        android:text="Go to home screen"
-        android:textColor="@color/colorPrimary"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <TextView
-        android:id="@+id/text_field_question"
-        android:layout_width="409dp"
+        android:id="@+id/button2"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Your results"
-        android:visibility="visible"
-        tools:layout_editor_absoluteX="1dp"
-        tools:layout_editor_absoluteY="206dp" />
+        android:text="Button"
+        tools:layout_editor_absoluteX="161dp"
+        tools:layout_editor_absoluteY="342dp" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
