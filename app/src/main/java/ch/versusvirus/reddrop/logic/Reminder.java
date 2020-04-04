@@ -50,6 +50,7 @@ public class Reminder {
                         .bigText(content))
                 .setPriority(NotificationCompat.PRIORITY_MAX)
                 .setContentIntent(PendingIntent.getActivity(context, 0, intent, 0))
+                .setAutoCancel(true)
                 .build();
     }
 
