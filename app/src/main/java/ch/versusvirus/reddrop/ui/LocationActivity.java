@@ -29,6 +29,7 @@ public class LocationActivity extends AppCompatActivity {
 
         Toolbar myToolbar = findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
+
         RecyclerView locationView = findViewById(R.id.rv_location);
         locationEntryAdapter = LocationEntryAdapter.getDefaultInstance(client -> {
             //TODO: open next activity
