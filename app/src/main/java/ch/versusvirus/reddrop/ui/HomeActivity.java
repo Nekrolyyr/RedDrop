@@ -1,18 +1,39 @@
 package ch.versusvirus.reddrop.ui;
 
+import android.app.Notification;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
 
 import ch.versusvirus.reddrop.R;
+import ch.versusvirus.reddrop.logic.Reminder;
 
 public class HomeActivity extends AppCompatActivity {
+
+    private Reminder reminder;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+
+        reminder = new Reminder(this, "1001");
+        findViewById(R.id.btn_notification_test).setOnClickListener(v -> {
+            NotificationManagerCompat notificationManager = NotificationManagerCompat.from(this);
+            String title = "Blood Donation Request";
+            String content = "URGENT: Any blood from people with Covid-19 needed.";
+            Intent intent = new Intent(this, HomeActivity.class);
+            intent = intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+            Notification notification = reminder.specialNotification(title, content, intent);
+            notificationManager.notify(1, notification);
+        });
+
         findViewById(R.id.btn_donate).setOnClickListener(v -> {
             startActivity(new Intent(this, SurveyActivity.class));
         });
