@@ -72,7 +72,7 @@ public class SurveyActivity extends AppCompatActivity {
                 mCounter++;
                 if (mCounter == mQuestionsLength) {
                     Intent intent = new Intent(SurveyActivity.this, SurveyResultActivity.class);
-                    intent.putExtra("Results",mSurvey);
+                    intent.putExtra("RESULTS",mSurvey);
                     startActivity(intent);
                 }
             }
