@@ -71,7 +71,7 @@ public class LocationEntryAdapter extends ListAdapter<DonationListEntry, Locatio
             TextView distance = itemView.findViewById(R.id.txt_distance_value);
             distance.setText("0 KM");
             TextView time = itemView.findViewById(R.id.txt_time);
-            time.setText(entry.getTimeRange());
+            time.setText(entry.getTimeStart() + " - " + entry.getTimeEnd());
             itemView.setOnClickListener(v -> listener.onClick(entry));
         }
     }
