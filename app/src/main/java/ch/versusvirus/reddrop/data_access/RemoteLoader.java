@@ -49,7 +49,7 @@ public abstract class RemoteLoader {
                 if (response.body() == null) {
                     resultAction.put(null);
                 } else {
-                    BloodBarometerParser parser = new BlutspendeBarometerParser();
+                    BloodBarometerParser parser = new BloodonorBarometerParser();
                     resultAction.put(parser.parse(response.body().string()));
                 }
             }
