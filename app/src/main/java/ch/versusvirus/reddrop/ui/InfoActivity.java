@@ -16,12 +16,17 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.NotificationManagerCompat;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import ch.versusvirus.reddrop.R;
 import ch.versusvirus.reddrop.data_access.RemoteLoader;
 import ch.versusvirus.reddrop.logic.Reminder;
 import ch.versusvirus.reddrop.logic.model.BloodBarometer;
 import ch.versusvirus.reddrop.logic.model.BloodBarometerEntry;
 import ch.versusvirus.reddrop.logic.model.BloodBarometerParams;
+import ch.versusvirus.reddrop.logic.model.BloodLevels;
+import ch.versusvirus.reddrop.logic.model.Regions;
 
 public class InfoActivity extends AppCompatActivity {
 
@@ -35,8 +40,6 @@ public class InfoActivity extends AppCompatActivity {
     private ProgressBar ab_n;
 
     private TextView lastUpdated;
-
-    private String[] regions = new String[]{"gesamt", "zuerich", "graubuenden"};
 
     private Reminder reminder;
     private int notification = 100;
@@ -65,13 +68,14 @@ public class InfoActivity extends AppCompatActivity {
 
     private void setupSpinner() {
         Spinner spinner = findViewById(R.id.spinner_blood_region);
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, R.layout.support_simple_spinner_dropdown_item, regions);
+        List<String> regions = new ArrayList<>(Regions.REGIONS.values());
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.support_simple_spinner_dropdown_item, regions);
         spinner.setAdapter(adapter);
 
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                getBloodData(regions[i]);
+                getBloodData((String) Regions.REGIONS.keySet().toArray()[i]);
                 ((TextView) adapterView.getChildAt(0)).setTextSize(12);
             }
 
@@ -82,7 +86,7 @@ public class InfoActivity extends AppCompatActivity {
         });
     }
 
-    private void setupButtons(){
+    private void setupButtons() {
         Button donationInfo = findViewById(R.id.btn_donation_info);
         Button whyDonate = findViewById(R.id.btn_why_donate);
         Button magazine = findViewById(R.id.btn_magazine);
@@ -94,7 +98,7 @@ public class InfoActivity extends AppCompatActivity {
 
     private void getBloodData(String location) {
         RemoteLoader.getBloodBarometerAsync(new BloodBarometerParams.Builder().location(location).build(),
-                result -> runOnUiThread(() -> submitBloodData(result, location)));
+                result -> runOnUiThread(() -> submitBloodData(result, Regions.REGIONS.get(location))));
     }
 
     private void submitBloodData(BloodBarometer bloodMeter, String location) {
@@ -122,39 +126,29 @@ public class InfoActivity extends AppCompatActivity {
 
     private int mapBloodLevelToPercent(int level, String location, String bloodType) {
         NotificationManagerCompat notificationManager = NotificationManagerCompat.from(this);
-        switch (level) {
-            case 0:
-                String[] messageCritical = getBloodLowMessage(location, bloodType, "critical");
+        BloodLevels bloodLevel = BloodLevels.values()[level];
+        switch (bloodLevel) {
+            case CriticallyLow:
+            case Critical:
+                String[] messageCritical = getBloodLowMessage(location, bloodType, bloodLevel);
                 Notification notification1 = reminder.bloodReserveNotification(messageCritical[0], messageCritical[1]);
                 notificationManager.notify(notificationNumber(), notification1);
-                return 1;
-            case 1:
-                String[] messageLow = getBloodLowMessage(location, bloodType, "low");
-                Notification notification2 = reminder.bloodReserveNotification(messageLow[0], messageLow[1]);
-                notificationManager.notify(notificationNumber(), notification2);
-                return 10;
-            case 2:
-                return 25;
-            case 3:
-                return 60;
-            case 4:
-                return 80;
-            default:
-                return 0;
+                break;
         }
+        return BloodLevels.getPercent(bloodLevel);
     }
 
-    private String[] getBloodLowMessage(String location, String bloodType, String severity) {
+    private String[] getBloodLowMessage(String location, String bloodType, BloodLevels level) {
         String title = "BloodCenter " + location;
-        String message = "Blood reserves from type " + bloodType + " are " + severity;
+        String message = "Blood reserves from type " + bloodType + " are " + level.toString();
         return new String[]{title, message};
     }
 
-    private int notificationNumber(){
+    private int notificationNumber() {
         return notification++;
     }
 
-    private void goToUrl (String url) {
+    private void goToUrl(String url) {
         Uri uriUrl = Uri.parse(url);
         Intent launchBrowser = new Intent(Intent.ACTION_VIEW, uriUrl);
         startActivity(launchBrowser);

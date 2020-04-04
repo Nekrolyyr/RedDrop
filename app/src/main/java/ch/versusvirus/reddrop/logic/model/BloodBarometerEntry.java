@@ -2,7 +2,6 @@ package ch.versusvirus.reddrop.logic.model;
 
 public class BloodBarometerEntry {
 
-
     private String date;
     private int nullPositive, nullNegative;
     private int aPositive, aNegative;
@@ -61,3 +60,4 @@ public class BloodBarometerEntry {
     }
 
 }
+
