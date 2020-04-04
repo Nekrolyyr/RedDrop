@@ -14,7 +14,7 @@
         android:layout_margin="10dp"
         android:layout_marginTop="140dp"
         android:fontFamily="sans-serif-light"
-        android:text="Survey_Result"
+        android:text="survey_result"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.526"
@@ -22,7 +22,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/btn_donate"
+        android:id="@+id/btn_donate_now"
         android:layout_width="409dp"
         android:layout_height="60dp"
         android:layout_marginBottom="316dp"
