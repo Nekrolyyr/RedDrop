@@ -125,7 +125,7 @@ public class ProfileActivity extends AppCompatActivity {
 
         findViewById(R.id.btn_saveLife).setOnClickListener(v -> {
             //check if madatory fields are filled
-            if(!TextUtils.isEmpty(edittext.getText().toString()) && (gender=="M" || gender=="F")){
+            if(!TextUtils.isEmpty(edittext.getText().toString()) && (gender.equals("M") || gender.equals("F"))){
                 SharedPreferences sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
                 SharedPreferences.Editor editor = sharedpreferences.edit();
                 editor.putString("Gender", gender);
