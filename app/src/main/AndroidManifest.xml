@@ -17,7 +17,7 @@
         <activity android:name=".ui.LocationActivity" />
         <activity android:name=".ui.SurveyActivity" />
         <activity android:name=".ui.HomeActivity" />
-        <activity android:name=".ui.WellcomeActivity">
+        <activity android:name=".ui.WelcomeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

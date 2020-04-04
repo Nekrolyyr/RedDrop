@@ -2,14 +2,160 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:layout_margin="10dp"
+    android:background="@drawable/white_filled_button"
+    android:elevation="4dp">
 
     <TextView
-        android:id="@+id/txt_entry"
-        android:layout_width="match_parent"
+        android:id="@+id/txt_date"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:text="Mo, May 11 - 2020"
+        android:textColor="@color/colorGrey"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/txt_organizer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:fontFamily="sans-serif-light"
+        android:text="SRK Ostschweiz"
+        android:textColor="@color/colorAccent"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_date" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="35dp"
+        android:layout_margin="5dp"
+        android:backgroundTint="@color/colorGrey"
+        android:elevation="4dp"
+        android:fontFamily="sans-serif-light"
+        android:text="Info"
+        android:textAllCaps="false"
+        android:textColor="@color/colorPrimary"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:id="@+id/v_separator"
+        android:layout_width="match_parent"
+        android:layout_height="0.8dp"
+        android:layout_marginTop="5dp"
+        android:background="@color/colorGrey"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/txt_organizer" />
+
+    <View
+        android:id="@+id/v_separator_1"
+        android:layout_width="0.8dp"
+        android:layout_height="0dp"
+        android:background="@color/colorGrey"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/v_separator_2"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/v_separator" />
+
+    <View
+        android:id="@+id/v_separator_2"
+        android:layout_width="0.8dp"
+        android:layout_height="0dp"
+        android:background="@color/colorGrey"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/v_separator_1"
+        app:layout_constraintTop_toBottomOf="@id/v_separator" />
+
+    <TextView
+        android:id="@+id/txt_where"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:fontFamily="sans-serif-light"
+        android:text="Where"
+        android:textColor="@color/colorGrey"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toStartOf="@+id/v_separator_1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/v_separator" />
+
+    <TextView
+        android:id="@+id/txt_loction"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:fontFamily="sans-serif-condensed-medium"
+        android:text="St.Gallen"
+        android:textColor="@color/colorGrey"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/v_separator_1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/txt_where" />
+
+    <TextView
+        android:id="@+id/txt_distance"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:fontFamily="sans-serif-light"
+        android:text="Distance"
+        android:textColor="@color/colorDarkBlue"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toStartOf="@+id/v_separator_2"
+        app:layout_constraintStart_toEndOf="@+id/v_separator_1"
+        app:layout_constraintTop_toBottomOf="@+id/v_separator" />
+
+    <TextView
+        android:id="@+id/txt_distance_value"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:fontFamily="sans-serif-condensed-medium"
+        android:text="3.5 KM"
+        android:textColor="@color/colorDarkBlue"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/v_separator_2"
+        app:layout_constraintStart_toEndOf="@+id/v_separator_1"
+        app:layout_constraintTop_toBottomOf="@id/txt_distance" />
+
+    <TextView
+        android:id="@+id/txt_hours"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:fontFamily="sans-serif-light"
+        android:text="Opening Hours"
+        android:textColor="@color/colorGrey"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/v_separator_2"
+        app:layout_constraintTop_toTopOf="@+id/v_separator" />
+
+    <TextView
+        android:id="@+id/txt_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:fontFamily="sans-serif-condensed-medium"
+        android:text="8:00-17:00"
+        android:textColor="@color/colorGrey"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/v_separator_2"
+        app:layout_constraintTop_toBottomOf="@id/txt_hours" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

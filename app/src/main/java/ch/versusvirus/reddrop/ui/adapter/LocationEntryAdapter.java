@@ -4,7 +4,6 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.DiffUtil;
@@ -62,9 +61,9 @@ public class LocationEntryAdapter extends ListAdapter<DonationListEntry, Locatio
         }
 
         void bind(DonationListEntry entry, ClickListener listener) {
-            TextView text = itemView.findViewById(R.id.txt_entry);
+            /*TextView text = itemView.findViewById(R.id.txt_entry);
             text.setText(entry.getDate() + " " + entry.getVillageInfo());
-            itemView.setOnClickListener(v -> listener.onClick(entry));
+            itemView.setOnClickListener(v -> listener.onClick(entry));*/
         }
     }
 }

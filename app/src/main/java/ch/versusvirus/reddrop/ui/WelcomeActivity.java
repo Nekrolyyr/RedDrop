@@ -7,12 +7,12 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import ch.versusvirus.reddrop.R;
 
-public class WellcomeActivity extends AppCompatActivity {
+public class WelcomeActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_wellcome);
+        setContentView(R.layout.activity_welcome);
 
         findViewById(R.id.btn_next).setOnClickListener(v -> {
             Intent intent = new Intent(this, HomeActivity.class);
