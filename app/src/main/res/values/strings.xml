@@ -14,4 +14,5 @@
     <string name="confirmDonationDialogTitle">Confirm donation</string>
     <string name="confirmDonationDialogContent">Confirm that you will donate blood today. As a consequence,
     you will receive the next blood level warning at the earliest in three month.</string>
+    <string name="view_details">View Details</string>
 </resources>

@@ -11,7 +11,8 @@
         android:roundIcon="@mipmap/ic_launcher"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.InfoActivity"></activity>
+        <activity android:name=".ui.NotificationsActivity" />
+        <activity android:name=".ui.InfoActivity" />
         <activity android:name=".ui.ProfileActivity" />
         <activity android:name=".ui.AppointmentActivity" />
         <activity android:name=".ui.LocationActivity" />

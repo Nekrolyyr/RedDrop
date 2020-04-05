@@ -67,14 +67,14 @@ public class HomeActivity extends AppCompatActivity {
         });
 
         SharedPreferences sp = getSharedPreferences(ProfileActivity.MyPREFERENCES, MODE_PRIVATE);
-        String region = mapRegion(sp.getString("Region", "Overall"));
+        String region = sp.getString("Region", "Overall");
         String bloodType = sp.getString("BloodType", "A+");
 
         TextView bloodTypeText = findViewById(R.id.txt_home_blood_type);
         TextView bloodRegion = findViewById(R.id.txt_home_location);
         bloodTypeText.setText(bloodType);
         bloodRegion.setText(region);
-        getBloodData(region, bloodType);
+        getBloodData(mapRegion(region), bloodType);
     }
 
     private void getBloodData(String location, String bloodType) {
@@ -89,37 +89,32 @@ public class HomeActivity extends AppCompatActivity {
 
         int bloodLevelIndex = -1;
 
-        try {
-            switch (bloodType) {
-                case "0+":
-                    bloodLevelIndex = result.getCurrentState().getNullPositive();
-                    break;
-                case "0-":
-                    bloodLevelIndex = result.getCurrentState().getNullNegative();
-                    break;
-                case "A+":
-                    bloodLevelIndex = result.getCurrentState().getaPositive();
-                    break;
-                case "A-":
-                    bloodLevelIndex = result.getCurrentState().getaNegative();
-                    break;
-                case "B+":
-                    bloodLevelIndex = result.getCurrentState().getbPositive();
-                    break;
-                case "B-":
-                    bloodLevelIndex = result.getCurrentState().getbNegative();
-                    break;
-                case "AB+":
-                    bloodLevelIndex = result.getCurrentState().getAbPositive();
-                    break;
-                case "AB-":
-                    bloodLevelIndex = result.getCurrentState().getAbNegative();
-                    break;
-                default:
-                    throw new RuntimeException("Bloodtype unkown");
-            }
-        } catch (NullPointerException e) {
-            bloodLevelIndex = 0;
+        switch (bloodType) {
+            case "0+":
+                bloodLevelIndex = result.getCurrentState().getNullPositive();
+                break;
+            case "0-":
+                bloodLevelIndex = result.getCurrentState().getNullNegative();
+                break;
+            case "A-":
+                bloodLevelIndex = result.getCurrentState().getaNegative();
+                break;
+            case "B+":
+                bloodLevelIndex = result.getCurrentState().getbPositive();
+                break;
+            case "B-":
+                bloodLevelIndex = result.getCurrentState().getbNegative();
+                break;
+            case "AB+":
+                bloodLevelIndex = result.getCurrentState().getAbPositive();
+                break;
+            case "AB-":
+                bloodLevelIndex = result.getCurrentState().getAbNegative();
+                break;
+            case "A+":
+            default:
+                bloodLevelIndex = result.getCurrentState().getaPositive();
+                break;
         }
 
         int bloodPercent = BloodLevels.getPercent(BloodLevels.values()[bloodLevelIndex]);
@@ -138,7 +133,7 @@ public class HomeActivity extends AppCompatActivity {
                 return entry.getKey();
             }
         }
-        return null;
+        return (String) Regions.REGIONS.keySet().toArray()[0];
     }
 
     @Override
