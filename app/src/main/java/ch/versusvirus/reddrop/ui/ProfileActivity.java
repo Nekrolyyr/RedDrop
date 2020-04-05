@@ -50,7 +50,7 @@ public class ProfileActivity extends AppCompatActivity {
         SharedPreferences sp = getSharedPreferences(MyPREFERENCES, MODE_PRIVATE);
         gender = sp.getString("Gender", ""); //Change this
         db = sp.getString("Birthday", ""); //Change this
-        region = sp.getString("Region", "Prefered Bloodcenter (optional)");
+        region = sp.getString("Region", "Overall");
         bt = sp.getString("BloodType", "Blood type (optional)"); //Change this
         zc = sp.getString("ZipCode", ""); //Change this
         donornumber = sp.getString("DonorNumber", ""); //Change this
@@ -130,6 +130,7 @@ public class ProfileActivity extends AppCompatActivity {
         List<String> regions = new ArrayList<>(Regions.REGIONS.values());
         ArrayAdapter<String> regionAdapter = new ArrayAdapter<String>(this, R.layout.support_simple_spinner_dropdown_item, regions);
         regionSpinner.setAdapter(regionAdapter);
+        regionSpinner.setSelection(regionAdapter.getPosition(region));
 
         // Blood type
         String[] items = new String[]{"Blood type (optional)", "0+", "0-", "A+", "A-", "AB+", "AB-", "B+", "B-"};
