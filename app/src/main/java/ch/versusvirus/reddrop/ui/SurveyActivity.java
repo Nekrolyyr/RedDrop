@@ -1,6 +1,7 @@
 package ch.versusvirus.reddrop.ui;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -8,6 +9,8 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+
 import ch.versusvirus.reddrop.R;
 import ch.versusvirus.reddrop.logic.model.Questions;
 
@@ -29,6 +32,10 @@ public class SurveyActivity extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_survey);
+
+        Toolbar myToolbar = findViewById(R.id.my_toolbar);
+        setSupportActionBar(myToolbar);
+        setTitle("Survey");
 
         btn_yes = (Button) findViewById(R.id.btn_yes);
         btn_no = (Button) findViewById(R.id.btn_no);
@@ -77,10 +84,7 @@ public class SurveyActivity extends AppCompatActivity {
             }
         });
 
-        findViewById(R.id.btn_CoronaAlert).setOnClickListener(v -> {
-            startActivity(new Intent(this, HomeActivity.class));
-        });
-
+        findViewById(R.id.btn_CoronaAlert).setOnClickListener(v -> goToUrl("https://www.blutspende.ch/de/blutspende"));
     }
 
      private void updateQuestion(int num){
@@ -101,5 +105,11 @@ public class SurveyActivity extends AppCompatActivity {
             updateQuestion(mCounter);
             moveBar.setProgress((int) (fraction * mCounter));
         }
+    }
+
+    private void goToUrl(String url) {
+        Uri uriUrl = Uri.parse(url);
+        Intent launchBrowser = new Intent(Intent.ACTION_VIEW, uriUrl);
+        startActivity(launchBrowser);
     }
 }

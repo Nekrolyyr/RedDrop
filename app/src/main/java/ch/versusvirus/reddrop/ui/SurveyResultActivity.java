@@ -6,6 +6,8 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+
 import ch.versusvirus.reddrop.R;
 import ch.versusvirus.reddrop.logic.model.Questions;
 
@@ -22,6 +24,12 @@ public class SurveyResultActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_survey_result);
+
+        Toolbar myToolbar = findViewById(R.id.my_toolbar);
+        setSupportActionBar(myToolbar);
+        setTitle("Survey Result");
 
         Intent intent = getIntent();
         StringBuilder stringBuilder = new StringBuilder();
@@ -46,9 +54,6 @@ public class SurveyResultActivity extends AppCompatActivity {
             Result_str="Unfortunately you are not eligible to donate.";
         }
 
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_survey_result);
-
         btn_proceed = (Button) findViewById(R.id.button_proceed);
         text_field_result = (TextView) findViewById(R.id.text_field_result);
         text_field_result.setText(stringBuilder.toString());
@@ -71,7 +76,9 @@ public class SurveyResultActivity extends AppCompatActivity {
         });
 
         findViewById(R.id.button_go_home).setOnClickListener(v -> {
-            startActivity(new Intent(this, HomeActivity.class));
+            Intent intent1 = new Intent(this, HomeActivity.class);
+            intent1.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+            startActivity(intent1);
         });
 
     }

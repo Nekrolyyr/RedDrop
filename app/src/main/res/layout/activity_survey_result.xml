@@ -70,7 +70,7 @@
                 android:background="#FFFFFF"
                 android:gravity="center"
                 android:text="Fail/Success"
-                android:textSize="20sp"
+                android:textSize="16sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

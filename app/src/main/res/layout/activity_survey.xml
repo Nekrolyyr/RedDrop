@@ -28,7 +28,9 @@
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
         android:elevation="4dp"
-        android:progress="100"
+        android:progress="50"
+        android:progressBackgroundTint="#BABABA"
+        android:progressTint="@color/colorAccent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btn_CoronaAlert" />
@@ -45,7 +47,7 @@
         android:elevation="4dp"
         android:gravity="center_horizontal"
         android:text="Question"
-        android:textSize="20sp"
+        android:textSize="16sp"
         android:visibility="visible"
         app:layout_constraintBottom_toTopOf="@+id/btn_yes"
         app:layout_constraintEnd_toEndOf="parent"
@@ -109,7 +111,7 @@
         android:elevation="4dp"
         android:gravity="center_horizontal"
         android:text="Have you been positively  tested of COVID-19 and haven't shown any symptons in the last 14 days?"
-        android:textSize="16dp"
+        android:textSize="12sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView20" />
@@ -117,7 +119,7 @@
     <Button
         android:id="@+id/btn_CoronaAlert"
         android:layout_width="0dp"
-        android:layout_height="24dp"
+        android:layout_height="32dp"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
         android:background="#FFFFFF"
