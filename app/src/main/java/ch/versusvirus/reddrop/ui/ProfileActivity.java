@@ -10,6 +10,7 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.CheckBox;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.RadioButton;
@@ -35,12 +36,13 @@ public class ProfileActivity extends AppCompatActivity {
     private String bt = "";
     private String zc = "";
     private EditText Zipcode;
+    CheckBox terms_checkbox;
 
     void loadData() { // load from shared preferences
         SharedPreferences sp = getSharedPreferences(MyPREFERENCES, MODE_PRIVATE);
         gender = sp.getString("Gender", ""); //Change this
         db = sp.getString("Birthday", ""); //Change this
-        bt = sp.getString("BloodType", " -- "); //Change this
+        bt = sp.getString("BloodType", "Blood type (optional)"); //Change this
         zc = sp.getString("ZipCode", ""); //Change this
         //Log.d("Editable", "Loaded data: Hints = " + String.valueOf(mHints));
     }
@@ -51,6 +53,11 @@ public class ProfileActivity extends AppCompatActivity {
 
         // Check which radio button was clicked
         switch (view.getId()) {
+            case R.id.other:
+                if (checked) {
+                    gender = "O";
+                }
+                break;
             case R.id.male:
                 if (checked) {
                     gender = "M";
@@ -77,6 +84,8 @@ public class ProfileActivity extends AppCompatActivity {
 
         loadData();
 
+        terms_checkbox = (CheckBox)findViewById(R.id.terms);// Terms and Conditions Check box
+
         // ZIP code
         Zipcode = findViewById(R.id.zipCode);
 
@@ -92,6 +101,11 @@ public class ProfileActivity extends AppCompatActivity {
             RadioGroup radioGroup = findViewById(R.id.gender);
             radioGroup.check(R.id.female);
         }
+        if (gender.equals("O")) {
+            RadioGroup radioGroup = findViewById(R.id.gender);
+            radioGroup.check(R.id.other);
+        }
+
         Log.d("Editable", "Value zc " + zc);
         if (!TextUtils.isEmpty(zc)) {
             Log.d("Editable", "Value zc inside " + zc);
@@ -101,7 +115,7 @@ public class ProfileActivity extends AppCompatActivity {
         ;
 
         // Blood type
-        String[] items = new String[]{"--", "0+", "0-", "A+", "A-", "AB+", "AB-", "B+", "B-"};
+        String[] items = new String[]{"Blood type (optional)", "0+", "0-", "A+", "A-", "AB+", "AB-", "B+", "B-"};
         //create an adapter to describe how the items are displayed, adapters are used in several places in android.
         //There are multiple variations of this, but this is the basic variant.
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, items);
@@ -164,12 +178,21 @@ public class ProfileActivity extends AppCompatActivity {
                 case 1:
                     gender = "F";
                     break;
+                case 2:
+                    gender = "O";
+                    break;
             }
         });
 
         findViewById(R.id.btn_saveLife).setOnClickListener(v -> {
             //check if madatory fields are filled
-            if (!TextUtils.isEmpty(edittext.getText().toString()) && (gender.equals("M") || gender.equals("F"))) {
+            if(!terms_checkbox.isChecked()){
+                AlertDialog.Builder builder = new AlertDialog.Builder(ProfileActivity.this);
+                builder.setTitle("Please accept terms and conditions");
+                AlertDialog alert = builder.create();
+                alert.show();
+                alert.getWindow().setLayout(1000, 250);
+            } else if (!TextUtils.isEmpty(edittext.getText().toString()) && (gender.equals("M") || gender.equals("F") || gender.equals("O"))) {
                 SharedPreferences sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
                 SharedPreferences.Editor editor = sharedpreferences.edit();
                 editor.putString("Gender", gender);
@@ -187,9 +210,11 @@ public class ProfileActivity extends AppCompatActivity {
                 startActivity(new Intent(this, HomeActivity.class));
             } else {
                 AlertDialog.Builder builder = new AlertDialog.Builder(ProfileActivity.this);
-                builder.setTitle("Please insert the mandatory fields (*)");
+                builder.setTitle("Please insert the mandatory fields");
                 AlertDialog alert = builder.create();
                 alert.show();
+                alert.getWindow().setLayout(1000, 250);
+
             }
 
         });
