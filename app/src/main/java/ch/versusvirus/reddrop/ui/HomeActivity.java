@@ -146,6 +146,13 @@ public class HomeActivity extends AppCompatActivity {
                 startActivity(new Intent(this, NotificationsActivity.class));
                 break;
             case R.id.action_share:
+                Intent sendIntent = new Intent();
+                sendIntent.setAction(Intent.ACTION_SEND);
+                sendIntent.putExtra(Intent.EXTRA_TEXT, getString(R.string.textToShare) + " " + getString(R.string.appStoreURL));
+                sendIntent.setType("text/plain");
+
+                Intent shareIntent = Intent.createChooser(sendIntent, null);
+                startActivity(shareIntent);
 
                 break;
         }
