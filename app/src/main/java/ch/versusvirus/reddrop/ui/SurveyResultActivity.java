@@ -22,6 +22,15 @@ public class SurveyResultActivity extends AppCompatActivity {
     private String Proceed_button_text;
     private int mQuestionsLength = mQuestions.mQuestions.length;
 
+    public static int sumArray(int[] Array) {
+        int SumArray = 0;
+
+        for (int i = Array.length; --i >= 0; )
+            SumArray += Array[i];
+
+        return SumArray;
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,13 +38,15 @@ public class SurveyResultActivity extends AppCompatActivity {
 
         Toolbar myToolbar = findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
-        setTitle("Survey Result");
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
+        myToolbar.findViewById(R.id.btn_toolbar_home).setOnClickListener(v -> startActivity(new Intent(this, HomeActivity.class)));
+        ((TextView) myToolbar.findViewById(R.id.txt_toolbar_title)).setText("Survey Result");
 
         Intent intent = getIntent();
         StringBuilder stringBuilder = new StringBuilder();
 
         Bundle bundle = intent.getExtras();
-        int results[] = (int[]) bundle.getIntArray("RESULTS");
+        int[] results = bundle.getIntArray("RESULTS");
 
         int sum_test = sumArray(results);
 
@@ -54,8 +65,8 @@ public class SurveyResultActivity extends AppCompatActivity {
             Result_str="Unfortunately you are not eligible to donate.";
         }
 
-        btn_proceed = (Button) findViewById(R.id.button_proceed);
-        text_field_result = (TextView) findViewById(R.id.text_field_result);
+        btn_proceed = findViewById(R.id.button_proceed);
+        text_field_result = findViewById(R.id.text_field_result);
         text_field_result.setText(stringBuilder.toString());
 
         if (sum_test==0) {
@@ -81,15 +92,6 @@ public class SurveyResultActivity extends AppCompatActivity {
             startActivity(intent1);
         });
 
-    }
-
-    public static int sumArray(int Array[]) {
-        int SumArray = 0;
-
-        for (int i = Array.length; --i >= 0;)
-            SumArray += Array[i];
-
-        return SumArray;
     }
 
 }

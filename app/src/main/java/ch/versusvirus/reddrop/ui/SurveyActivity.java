@@ -34,17 +34,13 @@ public class SurveyActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_survey);
 
-        Toolbar myToolbar = findViewById(R.id.my_toolbar);
-        setSupportActionBar(myToolbar);
-        setTitle("Survey");
-
-        btn_yes = (Button) findViewById(R.id.btn_yes);
-        btn_no = (Button) findViewById(R.id.btn_no);
-        text_field_question = (TextView) findViewById(R.id.text_field_question);
+        btn_yes = findViewById(R.id.btn_yes);
+        btn_no = findViewById(R.id.btn_no);
+        text_field_question = findViewById(R.id.text_field_question);
 
         updateQuestion(mCounter);
 
-        ProgressBar moveBar = (ProgressBar) findViewById(R.id.progress);
+        ProgressBar moveBar = findViewById(R.id.progress);
         moveBar.setProgress(0);
 
         Toolbar myToolbar = findViewById(R.id.my_toolbar);
@@ -103,7 +99,7 @@ public class SurveyActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        ProgressBar moveBar = (ProgressBar) findViewById(R.id.progress);
+        ProgressBar moveBar = findViewById(R.id.progress);
         if  (mCounter==0) {
             super.onBackPressed();
         }
