@@ -18,7 +18,7 @@ public class Regions {
             //put("", "Ostschweiz");
             put("svizzera_italiana", "Svizzera italiana");
             put("zentralschweiz", "Zentralschweiz");
-            put("zurich", "Zürich");
+            put("zuerich", "Zürich");
         }
     };
 }
