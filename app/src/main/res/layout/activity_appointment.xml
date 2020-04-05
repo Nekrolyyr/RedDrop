@@ -26,9 +26,9 @@
         android:layout_marginStart="15dp"
         android:layout_marginTop="15dp"
         android:layout_marginEnd="15dp"
-        android:background="@color/colorPrimary"
+        android:background="@drawable/white_filled_button"
         android:elevation="4dp"
-        app:layout_constraintBottom_toBottomOf="@id/spacerHorizontal"
+        app:layout_constraintBottom_toBottomOf="@id/spacer"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/my_toolbar" />
@@ -88,14 +88,76 @@
         app:layout_constraintTop_toBottomOf="@+id/txt_organizer" />
 
     <View
-        android:id="@+id/spacerHorizontal"
+        android:id="@+id/spacer"
         android:layout_width="0dp"
-        android:layout_height="1dp"
-        android:background="@color/colorBlack"
+        android:layout_height="10dp"
+        app:layout_constraintEnd_toEndOf="@+id/v_card1"
+        app:layout_constraintStart_toStartOf="@+id/v_card1"
+        app:layout_constraintTop_toBottomOf="@+id/rv_barChart" />
+
+    <View
+        android:id="@+id/v_card2"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="15dp"
+        android:background="@drawable/white_filled_button"
+        android:elevation="2dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/v_card1" />
+
+    <TextView
+        android:id="@+id/textView15"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
         android:elevation="4dp"
-        app:layout_constraintEnd_toEndOf="@id/rv_barChart"
-        app:layout_constraintStart_toStartOf="@id/v_card1"
-        app:layout_constraintTop_toBottomOf="@id/rv_barChart" />
+        android:fontFamily="sans-serif-light"
+        android:text="Schedule a Visit"
+        android:textColor="@color/colorAccent"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@+id/v_card2"
+        app:layout_constraintTop_toTopOf="@+id/v_card2" />
+
+    <TextView
+        android:id="@+id/textView16"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="20dp"
+        android:elevation="4dp"
+        android:text="Time Frame"
+        app:layout_constraintStart_toStartOf="@+id/v_card2"
+        app:layout_constraintTop_toBottomOf="@+id/textView15" />
+
+    <Spinner
+        android:id="@+id/spinner_timeframe"
+        android:layout_width="140dp"
+        android:layout_height="wrap_content"
+        android:elevation="4dp"
+        android:spinnerMode="dropdown"
+        android:theme="@style/ThemeOverlay.AppCompat.Light"
+        app:layout_constraintBottom_toBottomOf="@+id/textView16"
+        app:layout_constraintEnd_toEndOf="@+id/v_card2"
+        app:layout_constraintStart_toEndOf="@+id/textView16"
+        app:layout_constraintTop_toTopOf="@+id/textView16" />
+
+    <Button
+        android:id="@+id/btn_schedule"
+        android:layout_width="wrap_content"
+        android:layout_height="35dp"
+        android:layout_margin="10dp"
+        android:background="@drawable/white_filled_button"
+        android:backgroundTint="@color/colorAccent"
+        android:elevation="4dp"
+        android:text="Schedule"
+        android:textAllCaps="false"
+        android:textColor="@color/colorPrimary"
+        app:layout_constraintBottom_toBottomOf="@+id/v_card2"
+        app:layout_constraintEnd_toEndOf="@+id/v_card2" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

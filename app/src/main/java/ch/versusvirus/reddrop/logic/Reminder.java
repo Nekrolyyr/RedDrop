@@ -1,5 +1,6 @@
 package ch.versusvirus.reddrop.logic;
 
+import android.app.AlarmManager;
 import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
@@ -10,9 +11,15 @@ import android.os.Build;
 
 import androidx.core.app.NotificationCompat;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Locale;
 import java.util.Objects;
 
 import ch.versusvirus.reddrop.R;
+import ch.versusvirus.reddrop.logic.model.DonationListEntry;
+import ch.versusvirus.reddrop.ui.HomeActivity;
 
 public class Reminder {
 
@@ -48,7 +55,7 @@ public class Reminder {
 
     public Notification specialNotification(String title, String content, Intent intent){
         return new NotificationCompat.Builder(context, CHANNEL_ID)
-                .setSmallIcon(R.drawable.ic_launcher_foreground)
+                .setSmallIcon(R.drawable.ic_logo_red)
                 .setContentTitle(title)
                 .setContentText(content)
                 .setStyle(new NotificationCompat.BigTextStyle()
@@ -61,7 +68,7 @@ public class Reminder {
 
     public Notification bloodReserveNotification(String title, String content){
         return new NotificationCompat.Builder(context, CHANNEL_ID)
-                .setSmallIcon(R.drawable.ic_launcher_foreground)
+                .setSmallIcon(R.drawable.ic_logo_red)
                 .setContentTitle(title)
                 .setContentText(content)
                 .setStyle(new NotificationCompat.BigTextStyle()
@@ -71,7 +78,25 @@ public class Reminder {
                 .build();
     }
 
-    public void addAppointmentReminder(){
+    public void scheduleNotification(DonationListEntry loaction, String startTime) {
+        try {
+            Intent intent = new Intent(context, HomeActivity.class);
+            Notification notification = specialNotification("Donate Blood. Today at: " + startTime, loaction.getVillageInfo() + " " + loaction.getAdditionalInfo(), intent);
+            Intent notificationIntent = new Intent(context, MyNotificationPublisher.class);
+            int notificationId = 2001;
+            notificationIntent.putExtra(MyNotificationPublisher.NOTIFICATION_ID, notificationId);
+            notificationIntent.putExtra(MyNotificationPublisher.NOTIFICATION, notification);
+            PendingIntent pendingIntent = PendingIntent.getBroadcast(context, notificationId, notificationIntent, PendingIntent.FLAG_CANCEL_CURRENT);
+            Calendar calendar = Calendar.getInstance();
+            calendar.setTime(new SimpleDateFormat("dd.MM.yyyyy", Locale.ENGLISH).parse(loaction.getDate()));
+            calendar.add(Calendar.HOUR_OF_DAY, Integer.parseInt(startTime.split(":")[0]));
+            calendar.add(Calendar.HOUR_OF_DAY, Integer.parseInt(startTime.split(":")[1]));
+            long futureInMillis = calendar.getTimeInMillis();
+            AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
+            alarmManager.set(AlarmManager.RTC_WAKEUP, futureInMillis, pendingIntent);
+        } catch (ParseException | NullPointerException e) {
+            System.out.println("Cannot start alarm");
+        }
     }
 
 

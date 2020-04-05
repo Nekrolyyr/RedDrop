@@ -76,7 +76,7 @@ public class TimeBarAdapter extends ListAdapter<AppointmentTimeslot, TimeBarAdap
 
         void bind(AppointmentTimeslot item, ClickListener listener) {
             TextView time = itemView.findViewById(R.id.txt_time);
-            SimpleDateFormat format = new SimpleDateFormat("hh:mm", Locale.GERMANY);
+            SimpleDateFormat format = new SimpleDateFormat("HH:mm", Locale.ENGLISH);
             time.setText(format.format(item.getTime()));
             View bar = itemView.findViewById(R.id.v_bar);
             ConstraintLayout.LayoutParams lp = (ConstraintLayout.LayoutParams) bar.getLayoutParams();

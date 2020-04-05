@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -54,6 +55,8 @@ public class LocationEntryAdapter extends ListAdapter<DonationListEntry, Locatio
 
     public interface ClickListener {
         void onClick(DonationListEntry entry);
+
+        void onInfoClick(DonationListEntry entry);
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {
@@ -72,7 +75,9 @@ public class LocationEntryAdapter extends ListAdapter<DonationListEntry, Locatio
             distance.setText("0 KM");
             TextView time = itemView.findViewById(R.id.txt_time);
             time.setText(entry.getTimeStart() + " - " + entry.getTimeEnd());
-            itemView.setOnClickListener(v -> listener.onClick(entry));
+            itemView.findViewById(R.id.cl_holder).setOnClickListener(v -> listener.onClick(entry));
+            Button info = itemView.findViewById(R.id.btn_info);
+            info.setOnClickListener(v -> listener.onInfoClick(entry));
         }
     }
 }

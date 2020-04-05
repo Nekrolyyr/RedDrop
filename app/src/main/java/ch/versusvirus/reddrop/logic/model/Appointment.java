@@ -1,6 +1,16 @@
 package ch.versusvirus.reddrop.logic.model;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Collections;
+import java.util.List;
+import java.util.Locale;
+
 public class Appointment {
+
+    public static final int slotLengthMin = 30;
 
     private String id;
     private int nSlots, maxCapacityPerSlot;
@@ -28,7 +38,6 @@ public class Appointment {
         this.remainingCapacities = remainingCapacities;
         this.success = success;
         this.action = action;
-
     }
 
     public String getId() {
@@ -50,5 +59,20 @@ public class Appointment {
     public Boolean getSuccess() { return success; }
 
     public String getAction() { return action; }
+
+    public List<AppointmentTimeslot> getTimeslots(String startTime) {
+        try {
+            ArrayList<AppointmentTimeslot> timeslots = new ArrayList<>();
+            Calendar timeIterator = Calendar.getInstance();
+            timeIterator.setTime(new SimpleDateFormat("hh:mm", Locale.ENGLISH).parse(startTime));
+            for (int i : remainingCapacities) {
+                timeslots.add(new AppointmentTimeslot(timeIterator.getTimeInMillis(), maxCapacityPerSlot - i));
+                timeIterator.add(Calendar.MINUTE, slotLengthMin);
+            }
+            return timeslots;
+        } catch (ParseException | NullPointerException e) {
+            return Collections.emptyList();
+        }
+    }
 
 }
