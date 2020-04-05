@@ -20,7 +20,8 @@ public class WelcomeActivity extends AppCompatActivity {
         });
 
         findViewById(R.id.btn_setup).setOnClickListener(v -> {
-            //TODO: open Profile
+            Intent intent = new Intent(this, ProfileActivity.class);
+            startActivity(intent);
         });
     }
 }
