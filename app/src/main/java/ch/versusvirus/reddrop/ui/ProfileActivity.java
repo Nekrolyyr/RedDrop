@@ -36,7 +36,9 @@ public class ProfileActivity extends AppCompatActivity {
     private String db = "";
     private String bt = "";
     private String zc = "";
+    private String donornumber = "";
     private EditText Zipcode;
+    private EditText Donornumber;
     CheckBox terms_checkbox;
 
     void loadData() { // load from shared preferences
@@ -45,6 +47,7 @@ public class ProfileActivity extends AppCompatActivity {
         db = sp.getString("Birthday", ""); //Change this
         bt = sp.getString("BloodType", "Blood type (optional)"); //Change this
         zc = sp.getString("ZipCode", ""); //Change this
+        donornumber = sp.getString("DonorNumber", ""); //Change this
         //Log.d("Editable", "Loaded data: Hints = " + String.valueOf(mHints));
     }
 
@@ -90,6 +93,8 @@ public class ProfileActivity extends AppCompatActivity {
 
         // ZIP code
         Zipcode = findViewById(R.id.zipCode);
+        Donornumber = findViewById(R.id.donornumber);
+        Donornumber.setText(donornumber);
 
         EditText edittext = findViewById(R.id.dateOfBirth);
         if (!TextUtils.isEmpty(db)) {
@@ -205,6 +210,10 @@ public class ProfileActivity extends AppCompatActivity {
 
                 String zip = (Zipcode.getText().toString());
                 editor.putString("ZipCode", zip);
+
+                if (Donornumber.getText().toString().length() > 0) {
+                    editor.putString("DonorNumber", Donornumber.getText().toString());
+                }
 
                 editor.apply();
 

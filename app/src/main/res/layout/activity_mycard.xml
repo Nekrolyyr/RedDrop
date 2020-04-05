@@ -11,7 +11,7 @@
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="150dp"
-        android:layout_height="200dp"
+        android:layout_height="180dp"
         android:src="@drawable/ic_logo"
         app:layout_constraintBottom_toTopOf="@+id/textView12"
         app:layout_constraintEnd_toEndOf="parent"
@@ -52,27 +52,42 @@
         android:id="@+id/textDonorInfo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
         android:fontFamily="sans-serif-light"
         android:text="empty"
-        android:visibility="invisible"
         android:textColor="@color/colorPrimary"
-        android:textSize="28sp"
-        app:layout_constraintBottom_toTopOf="@+id/barcodeView"
+        android:textSize="22sp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toTopOf="@+id/btn_donated"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+
+    <ImageView
+        android:id="@+id/barcodeBackground"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_margin="20dp"
+        android:background="@drawable/white_filled_button_round"
+        app:layout_constraintBottom_toTopOf="@+id/btn_donated"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
 
     <ImageView
         android:id="@+id/barcodeView"
         android:layout_width="0dp"
-        android:layout_height="75dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
-        android:layout_marginBottom="16dp"
-        app:layout_constraintBottom_toTopOf="@+id/btn_donated"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_height="0dp"
+        android:layout_margin="10dp"
+        app:layout_constraintBottom_toBottomOf="@+id/barcodeBackground"
+        app:layout_constraintEnd_toEndOf="@+id/barcodeBackground"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="@+id/barcodeBackground"
+        app:layout_constraintTop_toTopOf="@+id/barcodeBackground" />
 
     <Button
         android:id="@+id/btn_donated"
@@ -81,11 +96,12 @@
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
         android:layout_marginBottom="12dp"
-        android:background="@drawable/white_filled_button"
+        android:background="@drawable/white_outlined_button"
         android:fontFamily="sans-serif-light"
         android:text="I donated"
-        android:textColor="@color/colorAccent"
+        android:elevation="4dp"
         android:textStyle="bold"
+        android:textColor="@color/colorPrimary"
         app:layout_constraintBottom_toTopOf="@+id/btn_cancel"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"

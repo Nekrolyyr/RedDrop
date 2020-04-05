@@ -158,7 +158,7 @@ public class HomeActivity extends AppCompatActivity {
         //noinspection SimplifiableIfStatement
         switch (id) {
             case R.id.action_donor_card:
-
+                startActivity(new Intent(this, MyCardActivity.class));
                 break;
             case R.id.action_notifications:
 
