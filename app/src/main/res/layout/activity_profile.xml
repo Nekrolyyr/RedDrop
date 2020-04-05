@@ -47,6 +47,7 @@
         android:layout_marginTop="48dp"
         android:layout_marginEnd="16dp"
         android:text="We will never share your personal informaiton. Data is solely stored on your device."
+        android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@id/textView17" />
@@ -84,7 +85,8 @@
             android:layout_height="match_parent"
             android:layout_marginEnd="16dp"
             android:onClick="onRadioButtonClicked"
-            android:text="Male" />
+            android:text="Male"
+            android:textSize="18sp" />
 
         <RadioButton
             android:id="@+id/female"
@@ -92,14 +94,16 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="16dp"
             android:onClick="onRadioButtonClicked"
-            android:text="Female" />
+            android:text="Female"
+            android:textSize="18sp" />
 
         <RadioButton
             android:id="@+id/other"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:onClick="onRadioButtonClicked"
-            android:text="Other" />
+            android:text="Other"
+            android:textSize="18sp" />
     </RadioGroup>
 
 
@@ -117,18 +121,29 @@
         app:layout_constraintStart_toStartOf="@+id/guideline"
         app:layout_constraintTop_toBottomOf="@+id/gender" />
 
+    <TextView
+        android:id="@+id/textView19"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="64dp"
+        android:text="Optional: provide your blood type if you already know"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/zipCode" />
+
     <Spinner
         android:id="@+id/bloodType"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
         android:background="@android:drawable/btn_dropdown"
         android:spinnerMode="dropdown"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/guideline"
-        app:layout_constraintTop_toBottomOf="@+id/zipCode" />
+        app:layout_constraintTop_toBottomOf="@id/textView19" />
 
     <CheckBox
         android:id="@+id/terms"
@@ -136,6 +151,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
         android:text="Terms and Conditions"
+        android:textSize="16sp"
         app:layout_constraintBottom_toTopOf="@id/btn_saveLife"
         app:layout_constraintStart_toStartOf="@id/textView17" />
 
@@ -147,8 +163,10 @@
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="16dp"
         android:backgroundTint="@color/colorAccent"
-        android:text="Ready to save lifes"
+        android:text="Start saving lifes"
         android:textColor="@color/colorPrimary"
+        android:textSize="18sp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
