@@ -2,12 +2,15 @@ package ch.versusvirus.reddrop.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+
 import ch.versusvirus.reddrop.R;
 import ch.versusvirus.reddrop.logic.model.Questions;
 
@@ -30,15 +33,21 @@ public class SurveyActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_survey);
 
-        btn_yes = (Button) findViewById(R.id.btn_yes);
-        btn_no = (Button) findViewById(R.id.btn_no);
-        text_field_question = (TextView) findViewById(R.id.text_field_question);
+        btn_yes = findViewById(R.id.btn_yes);
+        btn_no = findViewById(R.id.btn_no);
+        text_field_question = findViewById(R.id.text_field_question);
 
         updateQuestion(mCounter);
         mCounter++;
 
-        ProgressBar moveBar = (ProgressBar) findViewById(R.id.progress);
+        ProgressBar moveBar = findViewById(R.id.progress);
         moveBar.setProgress(0);
+
+        Toolbar myToolbar = findViewById(R.id.my_toolbar);
+        setSupportActionBar(myToolbar);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
+        myToolbar.findViewById(R.id.btn_toolbar_home).setOnClickListener(v -> startActivity(new Intent(this, HomeActivity.class)));
+        ((TextView) myToolbar.findViewById(R.id.txt_toolbar_title)).setText("Survey");
 
         btn_yes.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -89,7 +98,7 @@ public class SurveyActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        ProgressBar moveBar = (ProgressBar) findViewById(R.id.progress);
+        ProgressBar moveBar = findViewById(R.id.progress);
         if  (mCounter==0) {
             super.onBackPressed();
         }
@@ -98,5 +107,12 @@ public class SurveyActivity extends AppCompatActivity {
             updateQuestion(mCounter);
             moveBar.setProgress((int) (fraction * mCounter));
         }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
     }
 }

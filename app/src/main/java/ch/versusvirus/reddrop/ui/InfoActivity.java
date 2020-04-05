@@ -54,6 +54,8 @@ public class InfoActivity extends AppCompatActivity {
         Toolbar myToolbar = findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
+        myToolbar.findViewById(R.id.btn_toolbar_home).setOnClickListener(v -> startActivity(new Intent(this, HomeActivity.class)));
+        ((TextView) myToolbar.findViewById(R.id.txt_toolbar_title)).setText("Info");
 
         reminder = new Reminder(getApplicationContext());
 

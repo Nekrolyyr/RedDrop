@@ -77,16 +77,16 @@ public class ProfileActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
 
-
         Toolbar myToolbar = findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
+        myToolbar.findViewById(R.id.btn_toolbar_home).setOnClickListener(v -> startActivity(new Intent(this, HomeActivity.class)));
 
         Calendar myCalendar = Calendar.getInstance();
 
         loadData();
 
-        terms_checkbox = (CheckBox)findViewById(R.id.terms);// Terms and Conditions Check box
+        terms_checkbox = findViewById(R.id.terms);// Terms and Conditions Check box
 
         // ZIP code
         Zipcode = findViewById(R.id.zipCode);

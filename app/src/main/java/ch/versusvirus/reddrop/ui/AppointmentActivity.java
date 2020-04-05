@@ -39,6 +39,7 @@ public class AppointmentActivity extends AppCompatActivity {
         Toolbar myToolbar = findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
+        myToolbar.findViewById(R.id.btn_toolbar_home).setOnClickListener(v -> startActivity(new Intent(this, HomeActivity.class)));
 
         DonationListEntry location = DonationListEntry.fromJson(getIntent().getStringExtra("LOCATION"));
 
@@ -55,6 +56,8 @@ public class AppointmentActivity extends AppCompatActivity {
         organizer.setText(location.getAdditionalInfo());
         TextView time = findViewById(R.id.txt_time);
         time.setText(location.getTimeStart() + " - " + location.getTimeEnd());
+
+        ((TextView) myToolbar.findViewById(R.id.txt_toolbar_title)).setText(location.getVillageInfo());
 
         RemoteLoader.getAppointmentStatusAsync(new AppointmentGetterParams.Builder().id(location.getId()).nSlots(extractTimeFrames(location)).build(), result -> {
             timeBarAdapter.setMaxExpectedPeople(result.getMaxCapacityPerSlot());
