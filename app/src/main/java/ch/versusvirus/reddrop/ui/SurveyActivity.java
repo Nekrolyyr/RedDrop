@@ -14,7 +14,7 @@ import ch.versusvirus.reddrop.logic.model.Questions;
 
 public class SurveyActivity extends AppCompatActivity {
 
-    Button btn_yes, btn_no;
+    Button btn_yes, btn_no, btn_CoronaAlert;
     TextView text_field_question;
 
     private Questions mQuestions = new Questions();
@@ -35,7 +35,6 @@ public class SurveyActivity extends AppCompatActivity {
         text_field_question = (TextView) findViewById(R.id.text_field_question);
 
         updateQuestion(mCounter);
-        mCounter++;
 
         ProgressBar moveBar = (ProgressBar) findViewById(R.id.progress);
         moveBar.setProgress(0);
@@ -44,18 +43,18 @@ public class SurveyActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if (btn_yes.getText() == mAnswer) {
-                    mSurvey[mCounter-1] = 0;
+                    mSurvey[mCounter] = 0;
                 } else {
-                    mSurvey[mCounter-1] = 1;
+                    mSurvey[mCounter] = 1;
                 }
+                mCounter++;
                 if ((mCounter) == mQuestionsLength) {
                     Intent intent = new Intent(SurveyActivity.this, SurveyResultActivity.class);
                     intent.putExtra("RESULTS",mSurvey);
                     startActivity(intent);
                 } else {
                     moveBar.setProgress( (int)(fraction * mCounter));
-                    updateQuestion(mCounter);
-                    mCounter++;}
+                    updateQuestion(mCounter);}
             }
         });
 
@@ -63,19 +62,23 @@ public class SurveyActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if (btn_no.getText() == mAnswer) {
-                    mSurvey[mCounter-1] = 0;
+                    mSurvey[mCounter] = 0;
                 } else {
-                    mSurvey[mCounter-1] = 1;
+                    mSurvey[mCounter] = 1;
                 }
+                mCounter++;
                 if ((mCounter) == mQuestionsLength) {
                     Intent intent = new Intent(SurveyActivity.this, SurveyResultActivity.class);
                     intent.putExtra("RESULTS",mSurvey);
                     startActivity(intent);
                 } else {
                     moveBar.setProgress( (int)(fraction * mCounter));
-                    updateQuestion(mCounter);
-                    mCounter++;}
+                    updateQuestion(mCounter);}
             }
+        });
+
+        findViewById(R.id.btn_CoronaAlert).setOnClickListener(v -> {
+            startActivity(new Intent(this, HomeActivity.class));
         });
 
     }
