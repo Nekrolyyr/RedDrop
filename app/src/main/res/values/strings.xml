@@ -7,4 +7,11 @@
     <string name="last_updated">Last updated:</string>
     <string name="why_donate">Why donate?</string>
     <string name="magazin">Magazin</string>
+
+
+    <string name="confirmDonationDialog">Confirm</string>
+    <string name="cancelDonationDialog">Cancel</string>
+    <string name="confirmDonationDialogTitle">Confirm donation</string>
+    <string name="confirmDonationDialogContent">Confirm that you will donate blood today. As a consequence,
+    you will receive the next blood level warning at the earliest in three month.</string>
 </resources>
