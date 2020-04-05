@@ -10,6 +10,7 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.CheckBox;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.RadioButton;
@@ -35,6 +36,7 @@ public class ProfileActivity extends AppCompatActivity {
     private String bt = "";
     private String zc = "";
     private EditText Zipcode;
+    CheckBox terms_checkbox;
 
     void loadData() { // load from shared preferences
         SharedPreferences sp = getSharedPreferences(MyPREFERENCES, MODE_PRIVATE);
@@ -81,6 +83,8 @@ public class ProfileActivity extends AppCompatActivity {
         Calendar myCalendar = Calendar.getInstance();
 
         loadData();
+
+        terms_checkbox = (CheckBox)findViewById(R.id.terms);// Terms and Conditions Check box
 
         // ZIP code
         Zipcode = findViewById(R.id.zipCode);
@@ -182,6 +186,9 @@ public class ProfileActivity extends AppCompatActivity {
 
         findViewById(R.id.btn_saveLife).setOnClickListener(v -> {
             //check if madatory fields are filled
+            if(terms_checkbox.isChecked()){
+
+            }
             if (!TextUtils.isEmpty(edittext.getText().toString()) && (gender.equals("M") || gender.equals("F"))) {
                 SharedPreferences sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
                 SharedPreferences.Editor editor = sharedpreferences.edit();
