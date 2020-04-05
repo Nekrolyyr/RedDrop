@@ -95,9 +95,6 @@ public class HomeActivity extends AppCompatActivity {
             case "0-":
                 bloodLevelIndex = result.getCurrentState().getNullNegative();
                 break;
-            case "A+":
-                bloodLevelIndex = result.getCurrentState().getaPositive();
-                break;
             case "A-":
                 bloodLevelIndex = result.getCurrentState().getaNegative();
                 break;
@@ -113,8 +110,10 @@ public class HomeActivity extends AppCompatActivity {
             case "AB-":
                 bloodLevelIndex = result.getCurrentState().getAbNegative();
                 break;
+            case "A+":
             default:
-                throw new RuntimeException("Bloodtype unkown");
+                bloodLevelIndex = result.getCurrentState().getaPositive();
+                break;
         }
 
         int bloodPercent = BloodLevels.getPercent(BloodLevels.values()[bloodLevelIndex]);
@@ -133,6 +132,6 @@ public class HomeActivity extends AppCompatActivity {
                 return entry.getKey();
             }
         }
-        return null;
+        return (String) Regions.REGIONS.keySet().toArray()[0];
     }
 }
