@@ -60,7 +60,7 @@ public class DonationListEntry {
     }
 
     public String getId() {
-        return additionalInfo + "_" + date.replace(".", "_");
+        return villagePLZ + "_" + additionalInfo + "_" + date.replace(".", "_");
     }
 
     public String asJson() {

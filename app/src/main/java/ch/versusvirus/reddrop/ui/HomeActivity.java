@@ -5,14 +5,14 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.NotificationManagerCompat;
-
-import org.w3c.dom.Text;
 
 import java.text.MessageFormat;
 
@@ -34,7 +34,7 @@ public class HomeActivity extends AppCompatActivity {
 
         Toolbar myToolbar = findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
-        setTitle("HOME");
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
 
         reminder = new Reminder(getApplicationContext());
         findViewById(R.id.btn_notification_test).setOnClickListener(v -> {
@@ -123,5 +123,35 @@ public class HomeActivity extends AppCompatActivity {
         }
         bloodLevelPercent.setText(MessageFormat.format("{0} %", bloodPercent));
         bloodLevelStatus.setText(BloodLevels.values()[bloodLevelIndex].toString());
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+
+        //noinspection SimplifiableIfStatement
+        switch (id) {
+            case R.id.action_donor_card:
+
+                break;
+            case R.id.action_notifications:
+
+                break;
+            case R.id.action_share:
+
+                break;
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 }

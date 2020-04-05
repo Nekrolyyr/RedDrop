@@ -30,6 +30,9 @@
             android:name=".logic.MyNotificationPublisher"
             android:enabled="true"
             android:exported="true"></receiver>
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
     </application>
 
 </manifest>
