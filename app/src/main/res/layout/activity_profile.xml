@@ -60,7 +60,7 @@
         android:layout_marginEnd="16dp"
         android:ems="10"
         android:focusable="false"
-        android:hint="Birthday *"
+        android:hint="Birthday"
         android:inputType="date"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/guideline"
@@ -111,7 +111,7 @@
         android:layout_marginTop="32dp"
         android:layout_marginEnd="16dp"
         android:ems="10"
-        android:hint="Zip code"
+        android:hint="Zip code (optional)"
         android:inputType="number"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/guideline"
@@ -130,16 +130,14 @@
         app:layout_constraintStart_toStartOf="@+id/guideline"
         app:layout_constraintTop_toBottomOf="@+id/zipCode" />
 
-    <TextView
-        android:id="@+id/textView10"
+    <CheckBox
+        android:id="@+id/terms"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:text="*mandatory field"
-        android:textColor="@color/colorAccent"
-        android:textSize="12sp"
-        app:layout_constraintTop_toBottomOf="@+id/bloodType"
-        tools:layout_editor_absoluteX="16dp" />
+        android:layout_marginBottom="16dp"
+        android:text="Terms and Conditions"
+        app:layout_constraintBottom_toTopOf="@id/btn_saveLife"
+        app:layout_constraintStart_toStartOf="@id/textView17" />
 
     <Button
         android:id="@+id/btn_saveLife"
@@ -154,13 +152,5 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
-
-    <CheckBox
-        android:id="@+id/terms"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Terms and Conditions"
-        tools:layout_editor_absoluteX="19dp"
-        tools:layout_editor_absoluteY="598dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
