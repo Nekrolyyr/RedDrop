@@ -1,8 +1,12 @@
 package ch.versusvirus.reddrop.ui;
 
+import android.app.Notification;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -10,6 +14,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.app.NotificationManagerCompat;
 import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.ListAdapter;
@@ -19,24 +24,47 @@ import java.util.ArrayList;
 import java.util.List;
 
 import ch.versusvirus.reddrop.R;
+import ch.versusvirus.reddrop.logic.Reminder;
 
 public class NotificationsActivity extends AppCompatActivity {
+
+    private Reminder reminder;
+
+    private List<String[]> notificationString = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_notifications);
 
-        Toolbar myToolbar = findViewById(R.id.my_toolbar_notification);
+        Toolbar myToolbar = findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
-        setTitle("NotificationsActivity");
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
+        myToolbar.findViewById(R.id.btn_toolbar_home).setOnClickListener(v -> startActivity(new Intent(this, WelcomeActivity.class)));
 
-        List<String[]> notificationString = new ArrayList<>();
         notificationString.add(new String[]{"Scheduled Donation", "01.01.2021"});
+        notificationString.add(new String[]{"Scheduled Donation", "01.04.2021"});
 
         RecyclerView notifications = findViewById(R.id.rv_notifications);
         notifications.setLayoutManager(new LinearLayoutManager(this, RecyclerView.VERTICAL, false));
-        notifications.setAdapter(new NotificationAdapter());
+        NotificationAdapter adapter = new NotificationAdapter();
+        notifications.setAdapter(adapter);
+
+        adapter.submitList(notificationString);
+
+        reminder = new Reminder(getApplicationContext());
+        findViewById(R.id.btn_notification_test).setOnClickListener(v -> {
+            NotificationManagerCompat notificationManager = NotificationManagerCompat.from(this);
+            String title = "Blood Donation Request";
+            String content = "URGENT: Any blood from people with Covid-19 needed.";
+            notificationString.add(new String[]{title, content});
+            adapter.submitList(notificationString);
+            adapter.notifyDataSetChanged();
+            Intent intent = new Intent(this, HomeActivity.class);
+            intent = intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+            Notification notification = reminder.specialNotification(title, content, intent);
+            notificationManager.notify(1, notification);
+        });
     }
 
     class NotificationAdapter extends ListAdapter<String[], NotificationAdapter.NotificationViewHolder> {
@@ -85,5 +113,12 @@ public class NotificationsActivity extends AppCompatActivity {
             if (entry == null) return;
             holder.bind(entry);
         }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
     }
 }

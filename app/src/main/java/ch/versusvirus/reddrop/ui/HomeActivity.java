@@ -27,8 +27,6 @@ import ch.versusvirus.reddrop.logic.model.Regions;
 
 public class HomeActivity extends AppCompatActivity {
 
-    private Reminder reminder;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,17 +36,6 @@ public class HomeActivity extends AppCompatActivity {
         setSupportActionBar(myToolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
         myToolbar.findViewById(R.id.btn_toolbar_home).setOnClickListener(v -> startActivity(new Intent(this, WelcomeActivity.class)));
-
-        reminder = new Reminder(getApplicationContext());
-        findViewById(R.id.btn_notification_test).setOnClickListener(v -> {
-            NotificationManagerCompat notificationManager = NotificationManagerCompat.from(this);
-            String title = "Blood Donation Request";
-            String content = "URGENT: Any blood from people with Covid-19 needed.";
-            Intent intent = new Intent(this, HomeActivity.class);
-            intent = intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
-            Notification notification = reminder.specialNotification(title, content, intent);
-            notificationManager.notify(1, notification);
-        });
 
         findViewById(R.id.btn_donate).setOnClickListener(v -> {
             startActivity(new Intent(this, SurveyActivity.class));
@@ -156,7 +143,7 @@ public class HomeActivity extends AppCompatActivity {
 
                 break;
             case R.id.action_notifications:
-
+                startActivity(new Intent(this, NotificationsActivity.class));
                 break;
             case R.id.action_share:
 
