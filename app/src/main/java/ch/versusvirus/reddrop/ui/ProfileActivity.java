@@ -23,11 +23,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 import java.util.Locale;
 import java.util.TimeZone;
 
 import ch.versusvirus.reddrop.R;
+import ch.versusvirus.reddrop.logic.model.Regions;
 
 
 public class ProfileActivity extends AppCompatActivity {
@@ -35,6 +38,7 @@ public class ProfileActivity extends AppCompatActivity {
     private String gender = "";
     public static final String MyPREFERENCES = "MyPrefs";
     private String db = "";
+    private String region = "";
     private String bt = "";
     private String zc = "";
     private String donornumber = "";
@@ -46,6 +50,7 @@ public class ProfileActivity extends AppCompatActivity {
         SharedPreferences sp = getSharedPreferences(MyPREFERENCES, MODE_PRIVATE);
         gender = sp.getString("Gender", ""); //Change this
         db = sp.getString("Birthday", ""); //Change this
+        region = sp.getString("Region", "Prefered Bloodcenter (optional)");
         bt = sp.getString("BloodType", "Blood type (optional)"); //Change this
         zc = sp.getString("ZipCode", ""); //Change this
         donornumber = sp.getString("DonorNumber", ""); //Change this
@@ -120,6 +125,11 @@ public class ProfileActivity extends AppCompatActivity {
             int zc_temp = Integer.parseInt(zc);
             Zipcode.setText(zc);
         }
+
+        Spinner regionSpinner = findViewById(R.id.spinner_region);
+        List<String> regions = new ArrayList<>(Regions.REGIONS.values());
+        ArrayAdapter<String> regionAdapter = new ArrayAdapter<String>(this, R.layout.support_simple_spinner_dropdown_item, regions);
+        regionSpinner.setAdapter(regionAdapter);
 
         // Blood type
         String[] items = new String[]{"Blood type (optional)", "0+", "0-", "A+", "A-", "AB+", "AB-", "B+", "B-"};
@@ -204,6 +214,8 @@ public class ProfileActivity extends AppCompatActivity {
                 SharedPreferences.Editor editor = sharedpreferences.edit();
                 editor.putString("Gender", gender);
                 editor.putString("Birthday", edittext.getText().toString());
+
+                editor.putString("Region", regionSpinner.getSelectedItem().toString());
 
                 Spinner mySpinner = findViewById(R.id.bloodType);
                 String blood_type = mySpinner.getSelectedItem().toString();

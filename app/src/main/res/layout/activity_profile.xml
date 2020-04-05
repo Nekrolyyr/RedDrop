@@ -9,6 +9,7 @@
         android:id="@+id/constraintLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:focusableInTouchMode="true"
         tools:context=".ui.ProfileActivity">
 
         <androidx.appcompat.widget.Toolbar
@@ -55,21 +56,21 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="64dp"
+            android:layout_marginTop="16dp"
             android:text="My profile"
             android:textColor="@color/colorAccent"
             android:textSize="22sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="@id/my_toolbar"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/my_toolbar" />
 
         <TextView
             android:id="@+id/textView18"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp"
             android:layout_marginTop="10dp"
+            android:layout_marginEnd="16dp"
             android:text="We will never share your personal informaiton. Data is solely stored on your device."
             android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -81,8 +82,8 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
             android:layout_marginEnd="16dp"
-            android:layout_marginTop="10dp"
             android:ems="10"
             android:focusable="false"
             android:hint="Birthday"
@@ -96,7 +97,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="32dp"
+            android:layout_marginTop="16dp"
             android:layout_marginEnd="16dp"
             android:orientation="horizontal"
             app:layout_constraintEnd_toEndOf="parent"
@@ -136,7 +137,7 @@
             android:layout_width="0dp"
             android:layout_height="45dp"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="32dp"
+            android:layout_marginTop="16dp"
             android:layout_marginEnd="16dp"
             android:ems="10"
             android:hint="Zip code (optional)"
@@ -145,16 +146,31 @@
             app:layout_constraintStart_toStartOf="@+id/guideline"
             app:layout_constraintTop_toBottomOf="@+id/gender" />
 
-        <TextView
-            android:id="@+id/textView19"
-            android:layout_width="wrap_content"
+        <Spinner
+            android:id="@+id/spinner_region"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="10dp"
-            android:text="Optional: provide your blood type if you already know"
-            android:textSize="16sp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:background="@android:drawable/btn_dropdown"
+            android:spinnerMode="dropdown"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/zipCode" />
+
+        <TextView
+            android:id="@+id/textView19"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:text="Optional: provide your blood type if you already know"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/spinner_region" />
 
         <Spinner
             android:id="@+id/bloodType"
@@ -172,12 +188,14 @@
 
         <TextView
             android:id="@+id/textView21"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
             android:text="Optional: provide your donor number"
             android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/bloodType" />
 
@@ -186,7 +204,7 @@
             android:layout_width="0dp"
             android:layout_height="45dp"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="16dp"
             android:layout_marginEnd="16dp"
             android:ems="10"
             android:hint="Donor Number (optional)"
@@ -197,13 +215,15 @@
 
         <CheckBox
             android:id="@+id/terms"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
             android:layout_marginBottom="16dp"
             android:text="Terms and Conditions"
             android:textSize="16sp"
-            android:layout_marginTop="15dp"
             app:layout_constraintBottom_toTopOf="@id/btn_saveLife"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@id/textView17"
             app:layout_constraintTop_toBottomOf="@+id/donornumber" />
 
