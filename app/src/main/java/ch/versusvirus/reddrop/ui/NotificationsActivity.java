@@ -25,6 +25,7 @@ import java.util.List;
 
 import ch.versusvirus.reddrop.R;
 import ch.versusvirus.reddrop.logic.Reminder;
+import ch.versusvirus.reddrop.logic.ToolbarActionManager;
 
 public class NotificationsActivity extends AppCompatActivity {
 
@@ -133,13 +134,13 @@ public class NotificationsActivity extends AppCompatActivity {
         //noinspection SimplifiableIfStatement
         switch (id) {
             case R.id.action_donor_card:
-                startActivity(new Intent(this, MyCardActivity.class));
+                ToolbarActionManager.donorCard(this);
                 break;
             case R.id.action_notifications:
-                startActivity(new Intent(this, NotificationsActivity.class));
+                ToolbarActionManager.notifications(this);
                 break;
             case R.id.action_share:
-
+                ToolbarActionManager.share(this);
                 break;
         }
         return super.onOptionsItemSelected(item);

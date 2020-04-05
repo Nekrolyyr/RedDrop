@@ -18,6 +18,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import ch.versusvirus.reddrop.R;
 import ch.versusvirus.reddrop.data_access.RemoteLoader;
+import ch.versusvirus.reddrop.logic.ToolbarActionManager;
 import ch.versusvirus.reddrop.logic.model.DonationListEntry;
 import ch.versusvirus.reddrop.logic.model.LocationSearchParams;
 import ch.versusvirus.reddrop.ui.adapter.LocationEntryAdapter;
@@ -129,13 +130,13 @@ public class LocationActivity extends AppCompatActivity {
         //noinspection SimplifiableIfStatement
         switch (id) {
             case R.id.action_donor_card:
-                startActivity(new Intent(this, MyCardActivity.class));
+                ToolbarActionManager.donorCard(this);
                 break;
             case R.id.action_notifications:
-                startActivity(new Intent(this, NotificationsActivity.class));
+                ToolbarActionManager.notifications(this);
                 break;
             case R.id.action_share:
-
+                ToolbarActionManager.share(this);
                 break;
         }
         return super.onOptionsItemSelected(item);

@@ -14,6 +14,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import ch.versusvirus.reddrop.R;
+import ch.versusvirus.reddrop.logic.ToolbarActionManager;
 import ch.versusvirus.reddrop.logic.model.Questions;
 
 
@@ -128,17 +129,18 @@ public class SurveyActivity extends AppCompatActivity {
         //noinspection SimplifiableIfStatement
         switch (id) {
             case R.id.action_donor_card:
-                startActivity(new Intent(this, MyCardActivity.class));
+                ToolbarActionManager.donorCard(this);
                 break;
             case R.id.action_notifications:
-                startActivity(new Intent(this, NotificationsActivity.class));
+                ToolbarActionManager.notifications(this);
                 break;
             case R.id.action_share:
-
+                ToolbarActionManager.share(this);
                 break;
         }
         return super.onOptionsItemSelected(item);
     }
+
     private void goToUrl(String url) {
         Uri uriUrl = Uri.parse(url);
         Intent launchBrowser = new Intent(Intent.ACTION_VIEW, uriUrl);

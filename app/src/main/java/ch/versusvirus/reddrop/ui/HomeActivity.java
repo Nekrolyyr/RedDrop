@@ -1,6 +1,5 @@
 package ch.versusvirus.reddrop.ui;
 
-import android.app.Notification;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Build;
@@ -12,14 +11,13 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.core.app.NotificationManagerCompat;
 
 import java.text.MessageFormat;
 import java.util.Map;
 
 import ch.versusvirus.reddrop.R;
 import ch.versusvirus.reddrop.data_access.RemoteLoader;
-import ch.versusvirus.reddrop.logic.Reminder;
+import ch.versusvirus.reddrop.logic.ToolbarActionManager;
 import ch.versusvirus.reddrop.logic.model.BloodBarometer;
 import ch.versusvirus.reddrop.logic.model.BloodBarometerParams;
 import ch.versusvirus.reddrop.logic.model.BloodLevels;
@@ -140,20 +138,13 @@ public class HomeActivity extends AppCompatActivity {
         //noinspection SimplifiableIfStatement
         switch (id) {
             case R.id.action_donor_card:
-                startActivity(new Intent(this, MyCardActivity.class));
+                ToolbarActionManager.donorCard(this);
                 break;
             case R.id.action_notifications:
-                startActivity(new Intent(this, NotificationsActivity.class));
+                ToolbarActionManager.notifications(this);
                 break;
             case R.id.action_share:
-                Intent sendIntent = new Intent();
-                sendIntent.setAction(Intent.ACTION_SEND);
-                sendIntent.putExtra(Intent.EXTRA_TEXT, getString(R.string.textToShare) + " " + getString(R.string.appStoreURL));
-                sendIntent.setType("text/plain");
-
-                Intent shareIntent = Intent.createChooser(sendIntent, null);
-                startActivity(shareIntent);
-
+                ToolbarActionManager.share(this);
                 break;
         }
         return super.onOptionsItemSelected(item);
