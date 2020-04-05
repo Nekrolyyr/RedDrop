@@ -1,6 +1,7 @@
 package ch.versusvirus.reddrop.ui;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.text.Editable;
@@ -16,8 +17,9 @@ import ch.versusvirus.reddrop.R;
 import ch.versusvirus.reddrop.data_access.RemoteLoader;
 import ch.versusvirus.reddrop.logic.model.DonationListEntry;
 import ch.versusvirus.reddrop.logic.model.LocationSearchParams;
-import ch.versusvirus.reddrop.logic.model.User;
 import ch.versusvirus.reddrop.ui.adapter.LocationEntryAdapter;
+
+import static ch.versusvirus.reddrop.ui.ProfileActivity.MyPREFERENCES;
 
 public class LocationActivity extends AppCompatActivity {
 
@@ -32,6 +34,10 @@ public class LocationActivity extends AppCompatActivity {
 
         Toolbar myToolbar = findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
+
+
+        SharedPreferences sp = getSharedPreferences(MyPREFERENCES, MODE_PRIVATE);
+        String zip = sp.getString("ZipCode", "");
 
         RecyclerView locationView = findViewById(R.id.rv_location);
         locationEntryAdapter = LocationEntryAdapter.getDefaultInstance(new LocationEntryAdapter.ClickListener() {
@@ -54,6 +60,7 @@ public class LocationActivity extends AppCompatActivity {
         locationView.setAdapter(locationEntryAdapter);
 
         EditText zipInput = findViewById(R.id.et_zip);
+        zipInput.setText(zip);
         zipInput.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -85,7 +92,8 @@ public class LocationActivity extends AppCompatActivity {
                 fetchNewLocations(new LocationSearchParams.Builder().PLZ(lastUsedZIP).radius(s.toString()).build());
             }
         });
-        fetchNewLocations(new LocationSearchParams.Builder().PLZ(User.getCurrent().getPLZ()).radius(defaultRadius).build());
+        fetchNewLocations(new LocationSearchParams.Builder().PLZ(zip).radius(defaultRadius).build());
+
     }
 
     private void fetchNewLocations(LocationSearchParams params) {
