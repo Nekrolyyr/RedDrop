@@ -156,7 +156,7 @@ public class HomeActivity extends AppCompatActivity {
                 startActivity(new Intent(this, MyCardActivity.class));
                 break;
             case R.id.action_notifications:
-
+                startActivity(new Intent(this, NotificationsActivity.class));
                 break;
             case R.id.action_share:
 

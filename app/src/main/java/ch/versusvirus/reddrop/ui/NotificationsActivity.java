@@ -1,8 +1,11 @@
 package ch.versusvirus.reddrop.ui;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -27,9 +30,12 @@ public class NotificationsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_notifications);
 
-        Toolbar myToolbar = findViewById(R.id.my_toolbar_notification);
+
+        Toolbar myToolbar = findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
-        setTitle("NotificationsActivity");
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
+        myToolbar.findViewById(R.id.btn_toolbar_home).setOnClickListener(v -> startActivity(new Intent(this, HomeActivity.class)));
+        ((TextView) myToolbar.findViewById(R.id.txt_toolbar_title)).setText("Notifications");
 
         List<String[]> notificationString = new ArrayList<>();
         notificationString.add(new String[]{"Scheduled Donation", "01.01.2021"});
@@ -85,5 +91,34 @@ public class NotificationsActivity extends AppCompatActivity {
             if (entry == null) return;
             holder.bind(entry);
         }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+
+        //noinspection SimplifiableIfStatement
+        switch (id) {
+            case R.id.action_donor_card:
+                startActivity(new Intent(this, MyCardActivity.class));
+                break;
+            case R.id.action_notifications:
+                startActivity(new Intent(this, NotificationsActivity.class));
+                break;
+            case R.id.action_share:
+
+                break;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

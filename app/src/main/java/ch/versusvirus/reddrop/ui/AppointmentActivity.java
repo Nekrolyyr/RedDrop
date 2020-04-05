@@ -3,6 +3,7 @@ package ch.versusvirus.reddrop.ui;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
@@ -60,11 +61,10 @@ public class AppointmentActivity extends AppCompatActivity {
         ((TextView) myToolbar.findViewById(R.id.txt_toolbar_title)).setText(location.getVillageInfo());
 
         RemoteLoader.getAppointmentStatusAsync(new AppointmentGetterParams.Builder().id(location.getId()).nSlots(extractTimeFrames(location)).build(), result -> {
-            timeBarAdapter.setMaxExpectedPeople(result.getMaxCapacityPerSlot());
-            timeBarAdapter.submitList(result.getTimeslots(location.getTimeStart()));
-            timeBarAdapter.notifyDataSetChanged();
-
             runOnUiThread(() -> {
+                timeBarAdapter.setMaxExpectedPeople(result.getMaxCapacityPerSlot());
+                timeBarAdapter.submitList(result.getTimeslots(location.getTimeStart()));
+                timeBarAdapter.notifyDataSetChanged();
                 Spinner timeFrameSelector = findViewById(R.id.spinner_timeframe);
                 SpinnerAdapter adapter = new ArrayAdapter<>(this, R.layout.support_simple_spinner_dropdown_item, result.getTimeslots(location.getTimeStart()));
                 timeFrameSelector.setAdapter(adapter);
@@ -98,5 +98,27 @@ public class AppointmentActivity extends AppCompatActivity {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+
+        //noinspection SimplifiableIfStatement
+        switch (id) {
+            case R.id.action_donor_card:
+                startActivity(new Intent(this, MyCardActivity.class));
+                break;
+            case R.id.action_notifications:
+                startActivity(new Intent(this, NotificationsActivity.class));
+                break;
+            case R.id.action_share:
+
+                break;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }
