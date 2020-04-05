@@ -1,6 +1,8 @@
 package ch.versusvirus.reddrop.ui;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
@@ -36,6 +38,7 @@ public class AppointmentActivity extends AppCompatActivity {
 
         Toolbar myToolbar = findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
 
         DonationListEntry location = DonationListEntry.fromJson(getIntent().getStringExtra("LOCATION"));
 
@@ -69,6 +72,7 @@ public class AppointmentActivity extends AppCompatActivity {
         schedule.setOnClickListener(v -> {
             Spinner timeFrameSelector = findViewById(R.id.spinner_timeframe);
             AppointmentScheduler.scheduleAt(location, timeFrameSelector.getSelectedItemPosition(), getApplicationContext());
+            startActivity(new Intent(this, HomeActivity.class));
         });
     }
 
@@ -84,5 +88,12 @@ public class AppointmentActivity extends AppCompatActivity {
         } catch (ParseException e) {
             return 0;
         }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
     }
 }

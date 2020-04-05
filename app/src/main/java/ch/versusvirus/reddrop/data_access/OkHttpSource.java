@@ -33,7 +33,6 @@ class OkHttpSource implements LocationSource, BloodBarometerSource, AppointmentG
 
     private String buildLocationURL(LocationSearchParams params) {
         String URL = locationsURL.replace("{{term}}", params.getPLZ()).replace("{{radius}}", params.getRadius());
-        System.out.println("HTTP GET TO " + URL);
         return URL;
     }
 

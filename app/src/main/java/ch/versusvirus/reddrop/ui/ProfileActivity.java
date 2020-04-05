@@ -8,6 +8,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.Menu;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
@@ -72,6 +73,7 @@ public class ProfileActivity extends AppCompatActivity {
 
         Toolbar myToolbar = findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
 
         Calendar myCalendar = Calendar.getInstance();
 
@@ -98,7 +100,6 @@ public class ProfileActivity extends AppCompatActivity {
             int zc_temp = Integer.parseInt(zc);
             Zipcode.setText(zc);
         }
-        ;
 
         // Blood type
         String[] items = new String[]{"--", "0+", "0-", "A+", "A-", "AB+", "AB-", "B+", "B-"};
@@ -193,5 +194,12 @@ public class ProfileActivity extends AppCompatActivity {
             }
 
         });
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
     }
 }
