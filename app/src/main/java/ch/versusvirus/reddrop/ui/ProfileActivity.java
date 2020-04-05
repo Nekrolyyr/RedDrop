@@ -10,6 +10,7 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.view.Menu;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 import android.widget.DatePicker;
@@ -17,16 +18,21 @@ import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 import java.util.TimeZone;
 
 import ch.versusvirus.reddrop.R;
+import ch.versusvirus.reddrop.logic.model.Regions;
 
 
 public class ProfileActivity extends AppCompatActivity {
@@ -36,6 +42,7 @@ public class ProfileActivity extends AppCompatActivity {
     private String db = "";
     private String bt = "";
     private String zc = "";
+    private String Region = "";
     private EditText Zipcode;
     CheckBox terms_checkbox;
 
@@ -45,7 +52,23 @@ public class ProfileActivity extends AppCompatActivity {
         db = sp.getString("Birthday", ""); //Change this
         bt = sp.getString("BloodType", "Blood type (optional)"); //Change this
         zc = sp.getString("ZipCode", ""); //Change this
+        Region = sp.getString("Region", "gesamt"); //Change this
         //Log.d("Editable", "Loaded data: Hints = " + String.valueOf(mHints));
+    }
+
+    public <K, V> int getKey(Map<K, V> map, V value) {
+        Log.d("Editable", "value init = " + value);
+        int count = 0;
+        for (Map.Entry<K, V> entry : map.entrySet()) {
+            Log.d("Editable", "count = " + count);
+            Log.d("Editable", "values = " + entry.getKey());
+            if (entry.getKey().equals(value)) {
+                Log.d("Editable", "count loop = " + count);
+                return count; //entry.getKey();
+            }
+            count = count + 1;
+        }
+        return -1;
     }
 
     public void onRadioButtonClicked(View view) {
@@ -88,6 +111,31 @@ public class ProfileActivity extends AppCompatActivity {
 
         terms_checkbox = (CheckBox)findViewById(R.id.terms);// Terms and Conditions Check box
 
+        Spinner spinnerRegions = findViewById(R.id.region);
+        List<String> regions = new ArrayList<>(Regions.REGIONS.values());
+        ArrayAdapter<String> adapterRegion = new ArrayAdapter<String>(this, R.layout.support_simple_spinner_dropdown_item, regions);
+        spinnerRegions.setAdapter(adapterRegion);
+        spinnerRegions.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                Region = ((String) Regions.REGIONS.keySet().toArray()[i]);
+                Log.d("Editable", "Region " + Region);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+
+        Log.d("Editable", "Value region before " + Region);
+        if (Region != null) {
+            int key = getKey(Regions.REGIONS, Region);
+            //int spinnerPosition = adapterRegion.getPosition(key);
+            Log.d("Editable", "Value region position " + key);
+            spinnerRegions.setSelection(key);
+        }
+
         // ZIP code
         Zipcode = findViewById(R.id.zipCode);
 
@@ -107,10 +155,7 @@ public class ProfileActivity extends AppCompatActivity {
             RadioGroup radioGroup = findViewById(R.id.gender);
             radioGroup.check(R.id.other);
         }
-
-        Log.d("Editable", "Value zc " + zc);
         if (!TextUtils.isEmpty(zc)) {
-            Log.d("Editable", "Value zc inside " + zc);
             int zc_temp = Integer.parseInt(zc);
             Zipcode.setText(zc);
         }
@@ -198,6 +243,8 @@ public class ProfileActivity extends AppCompatActivity {
                 SharedPreferences.Editor editor = sharedpreferences.edit();
                 editor.putString("Gender", gender);
                 editor.putString("Birthday", edittext.getText().toString());
+                Log.d("Editable", "Region saving " + Region);
+                editor.putString("Region", Region);
 
                 Spinner mySpinner = findViewById(R.id.bloodType);
                 String blood_type = mySpinner.getSelectedItem().toString();
@@ -221,10 +268,4 @@ public class ProfileActivity extends AppCompatActivity {
         });
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
-    }
 }
