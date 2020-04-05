@@ -181,17 +181,6 @@
         app:layout_constraintEnd_toEndOf="@+id/v_card2"
         app:layout_constraintStart_toEndOf="@+id/btn_info" />
 
-    <Button
-        android:id="@+id/btn_notification_test"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="4dp"
-        android:text="Test Notification"
-        android:textSize="12sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
     <ProgressBar
         android:id="@+id/blood_level_home"
         style="?android:attr/progressBarStyleHorizontal"
