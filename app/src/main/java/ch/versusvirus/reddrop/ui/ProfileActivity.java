@@ -40,7 +40,7 @@ public class ProfileActivity extends AppCompatActivity {
         SharedPreferences sp = getSharedPreferences(MyPREFERENCES, MODE_PRIVATE);
         gender = sp.getString("Gender", ""); //Change this
         db = sp.getString("Birthday", ""); //Change this
-        bt = sp.getString("BloodType", " -- "); //Change this
+        bt = sp.getString("BloodType", "Blood type"); //Change this
         zc = sp.getString("ZipCode", ""); //Change this
         //Log.d("Editable", "Loaded data: Hints = " + String.valueOf(mHints));
     }
@@ -51,6 +51,11 @@ public class ProfileActivity extends AppCompatActivity {
 
         // Check which radio button was clicked
         switch (view.getId()) {
+            case R.id.other:
+                if (checked) {
+                    gender = "O";
+                }
+                break;
             case R.id.male:
                 if (checked) {
                     gender = "M";
@@ -92,6 +97,11 @@ public class ProfileActivity extends AppCompatActivity {
             RadioGroup radioGroup = findViewById(R.id.gender);
             radioGroup.check(R.id.female);
         }
+        if (gender.equals("O")) {
+            RadioGroup radioGroup = findViewById(R.id.gender);
+            radioGroup.check(R.id.other);
+        }
+
         Log.d("Editable", "Value zc " + zc);
         if (!TextUtils.isEmpty(zc)) {
             Log.d("Editable", "Value zc inside " + zc);
@@ -101,7 +111,7 @@ public class ProfileActivity extends AppCompatActivity {
         ;
 
         // Blood type
-        String[] items = new String[]{"--", "0+", "0-", "A+", "A-", "AB+", "AB-", "B+", "B-"};
+        String[] items = new String[]{"Blood type", "0+", "0-", "A+", "A-", "AB+", "AB-", "B+", "B-"};
         //create an adapter to describe how the items are displayed, adapters are used in several places in android.
         //There are multiple variations of this, but this is the basic variant.
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, items);
@@ -163,6 +173,9 @@ public class ProfileActivity extends AppCompatActivity {
                     break;
                 case 1:
                     gender = "F";
+                    break;
+                case 2:
+                    gender = "O";
                     break;
             }
         });
