@@ -43,52 +43,60 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.4" />
+        app:layout_constraintGuide_percent="0.0" />
 
     <TextView
-        android:id="@+id/textView1"
+        android:id="@+id/textView17"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="32dp"
-        android:text="Birthday *"
-        android:textSize="20sp"
+        android:layout_marginTop="64dp"
+        android:text="My profile"
+        android:textColor="@color/colorAccent"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@id/my_toolbar"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView18"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="48dp"
+        android:layout_marginEnd="16dp"
+        android:text="We will never share your personal informaiton. Data is solely stored on your device."
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/my_toolbar" />
+        app:layout_constraintTop_toTopOf="@id/textView17" />
 
     <EditText
         android:id="@+id/dateOfBirth"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
+        android:layout_marginTop="128dp"
         android:layout_marginEnd="16dp"
         android:ems="10"
         android:focusable="false"
+        android:hint="Birthday"
         android:inputType="date"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/guideline"
-        app:layout_constraintTop_toTopOf="@id/textView1" />
-
-    <TextView
-        android:id="@+id/textView6"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:text="Gender *"
-        android:textSize="20sp"
-        app:layout_constraintStart_toStartOf="@+id/textView1"
-        app:layout_constraintTop_toBottomOf="@+id/textView1" />
+        app:layout_constraintTop_toBottomOf="@id/my_toolbar" />
 
     <RadioGroup
         android:id="@+id/gender"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
+        android:layout_marginTop="32dp"
         android:layout_marginEnd="16dp"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/guideline"
-        app:layout_constraintTop_toTopOf="@id/textView6">
+        app:layout_constraintTop_toBottomOf="@+id/dateOfBirth">
 
         <RadioButton
             android:id="@+id/male"
@@ -96,71 +104,75 @@
             android:layout_height="match_parent"
             android:layout_marginEnd="16dp"
             android:onClick="onRadioButtonClicked"
-            android:text="Male" />
+            android:text="Male"
+            android:textSize="18sp" />
 
         <RadioButton
             android:id="@+id/female"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
             android:onClick="onRadioButtonClicked"
-            android:text="Female" />
+            android:text="Female"
+            android:textSize="18sp" />
+
+        <RadioButton
+            android:id="@+id/other"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="onRadioButtonClicked"
+            android:text="Other"
+            android:textSize="18sp" />
     </RadioGroup>
 
-
-    <TextView
-        android:id="@+id/textView8"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:text="Zip Code"
-        android:textSize="20sp"
-        app:layout_constraintStart_toStartOf="@+id/textView6"
-        app:layout_constraintTop_toBottomOf="@+id/textView6" />
 
     <EditText
         android:id="@+id/zipCode"
         android:layout_width="0dp"
         android:layout_height="45dp"
         android:layout_marginStart="16dp"
+        android:layout_marginTop="32dp"
         android:layout_marginEnd="16dp"
         android:ems="10"
+        android:hint="Zip code (optional)"
         android:inputType="number"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/guideline"
-        app:layout_constraintTop_toTopOf="@id/textView8" />
+        app:layout_constraintTop_toBottomOf="@+id/gender" />
 
     <TextView
-        android:id="@+id/textView_bloodtype"
+        android:id="@+id/textView19"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:text="Blood type"
-        android:textSize="20sp"
-        app:layout_constraintStart_toStartOf="@+id/textView8"
-        app:layout_constraintTop_toBottomOf="@+id/textView8" />
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="64dp"
+        android:text="Optional: provide your blood type if you already know"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/zipCode" />
 
     <Spinner
         android:id="@+id/bloodType"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
         android:background="@android:drawable/btn_dropdown"
         android:spinnerMode="dropdown"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/guideline"
-        app:layout_constraintTop_toTopOf="@id/textView_bloodtype" />
+        app:layout_constraintTop_toBottomOf="@id/textView19" />
 
-    <TextView
-        android:id="@+id/textView10"
+    <CheckBox
+        android:id="@+id/terms"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:text="*mandatory field"
-        android:textColor="@color/colorAccent"
-        android:textSize="12sp"
-        app:layout_constraintStart_toStartOf="@+id/textView_bloodtype"
-        app:layout_constraintTop_toBottomOf="@+id/textView_bloodtype" />
+        android:layout_marginBottom="16dp"
+        android:text="Terms and Conditions"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toTopOf="@id/btn_saveLife"
+        app:layout_constraintStart_toStartOf="@id/textView17" />
 
     <Button
         android:id="@+id/btn_saveLife"
@@ -170,8 +182,10 @@
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="16dp"
         android:backgroundTint="@color/colorAccent"
-        android:text="Ready to save lifes"
+        android:text="Start saving lifes"
         android:textColor="@color/colorPrimary"
+        android:textSize="18sp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
