@@ -1,6 +1,7 @@
 package ch.versusvirus.reddrop.ui;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -8,13 +9,15 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+
 import ch.versusvirus.reddrop.R;
 import ch.versusvirus.reddrop.logic.model.Questions;
 
 
 public class SurveyActivity extends AppCompatActivity {
 
-    Button btn_yes, btn_no;
+    Button btn_yes, btn_no, btn_CoronaAlert;
     TextView text_field_question;
 
     private Questions mQuestions = new Questions();
@@ -30,12 +33,15 @@ public class SurveyActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_survey);
 
+        Toolbar myToolbar = findViewById(R.id.my_toolbar);
+        setSupportActionBar(myToolbar);
+        setTitle("Survey");
+
         btn_yes = (Button) findViewById(R.id.btn_yes);
         btn_no = (Button) findViewById(R.id.btn_no);
         text_field_question = (TextView) findViewById(R.id.text_field_question);
 
         updateQuestion(mCounter);
-        mCounter++;
 
         ProgressBar moveBar = (ProgressBar) findViewById(R.id.progress);
         moveBar.setProgress(0);
@@ -44,18 +50,18 @@ public class SurveyActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if (btn_yes.getText() == mAnswer) {
-                    mSurvey[mCounter-1] = 0;
+                    mSurvey[mCounter] = 0;
                 } else {
-                    mSurvey[mCounter-1] = 1;
+                    mSurvey[mCounter] = 1;
                 }
+                mCounter++;
                 if ((mCounter) == mQuestionsLength) {
                     Intent intent = new Intent(SurveyActivity.this, SurveyResultActivity.class);
                     intent.putExtra("RESULTS",mSurvey);
                     startActivity(intent);
                 } else {
                     moveBar.setProgress( (int)(fraction * mCounter));
-                    updateQuestion(mCounter);
-                    mCounter++;}
+                    updateQuestion(mCounter);}
             }
         });
 
@@ -63,21 +69,22 @@ public class SurveyActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if (btn_no.getText() == mAnswer) {
-                    mSurvey[mCounter-1] = 0;
+                    mSurvey[mCounter] = 0;
                 } else {
-                    mSurvey[mCounter-1] = 1;
+                    mSurvey[mCounter] = 1;
                 }
+                mCounter++;
                 if ((mCounter) == mQuestionsLength) {
                     Intent intent = new Intent(SurveyActivity.this, SurveyResultActivity.class);
                     intent.putExtra("RESULTS",mSurvey);
                     startActivity(intent);
                 } else {
                     moveBar.setProgress( (int)(fraction * mCounter));
-                    updateQuestion(mCounter);
-                    mCounter++;}
+                    updateQuestion(mCounter);}
             }
         });
 
+        findViewById(R.id.btn_CoronaAlert).setOnClickListener(v -> goToUrl("https://www.blutspende.ch/de/blutspende"));
     }
 
      private void updateQuestion(int num){
@@ -98,5 +105,11 @@ public class SurveyActivity extends AppCompatActivity {
             updateQuestion(mCounter);
             moveBar.setProgress((int) (fraction * mCounter));
         }
+    }
+
+    private void goToUrl(String url) {
+        Uri uriUrl = Uri.parse(url);
+        Intent launchBrowser = new Intent(Intent.ACTION_VIEW, uriUrl);
+        startActivity(launchBrowser);
     }
 }
