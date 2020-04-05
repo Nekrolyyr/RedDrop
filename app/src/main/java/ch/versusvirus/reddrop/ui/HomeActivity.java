@@ -15,6 +15,7 @@ import androidx.core.app.NotificationManagerCompat;
 import org.w3c.dom.Text;
 
 import java.text.MessageFormat;
+import java.util.Map;
 
 import ch.versusvirus.reddrop.R;
 import ch.versusvirus.reddrop.data_access.RemoteLoader;
@@ -22,6 +23,7 @@ import ch.versusvirus.reddrop.logic.Reminder;
 import ch.versusvirus.reddrop.logic.model.BloodBarometer;
 import ch.versusvirus.reddrop.logic.model.BloodBarometerParams;
 import ch.versusvirus.reddrop.logic.model.BloodLevels;
+import ch.versusvirus.reddrop.logic.model.Regions;
 
 public class HomeActivity extends AppCompatActivity {
 
@@ -64,7 +66,7 @@ public class HomeActivity extends AppCompatActivity {
         });
 
         SharedPreferences sp = getSharedPreferences(ProfileActivity.MyPREFERENCES, MODE_PRIVATE);
-        String region = sp.getString("Region", "gesamt");
+        String region = mapRegion(sp.getString("Region", "Overall"));
         String bloodType = sp.getString("BloodType", "A+");
 
         TextView bloodTypeText = findViewById(R.id.txt_home_blood_type);
@@ -123,5 +125,14 @@ public class HomeActivity extends AppCompatActivity {
         }
         bloodLevelPercent.setText(MessageFormat.format("{0} %", bloodPercent));
         bloodLevelStatus.setText(BloodLevels.values()[bloodLevelIndex].toString());
+    }
+
+    private String mapRegion(String regionValue){
+        for (Map.Entry<String, String> entry : Regions.REGIONS.entrySet()){
+            if(entry.getValue().equals(regionValue)){
+                return entry.getKey();
+            }
+        }
+        return null;
     }
 }
