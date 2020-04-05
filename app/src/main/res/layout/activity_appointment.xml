@@ -135,9 +135,11 @@
 
     <Spinner
         android:id="@+id/spinner_timeframe"
-        android:layout_width="180dp"
+        android:layout_width="140dp"
         android:layout_height="wrap_content"
         android:elevation="4dp"
+        android:spinnerMode="dropdown"
+        android:theme="@style/ThemeOverlay.AppCompat.Light"
         app:layout_constraintBottom_toBottomOf="@+id/textView16"
         app:layout_constraintEnd_toEndOf="@+id/v_card2"
         app:layout_constraintStart_toEndOf="@+id/textView16"

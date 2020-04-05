@@ -1,6 +1,10 @@
 package ch.versusvirus.reddrop.ui;
 
 import android.os.Bundle;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.Spinner;
+import android.widget.SpinnerAdapter;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -15,6 +19,7 @@ import java.util.Locale;
 
 import ch.versusvirus.reddrop.R;
 import ch.versusvirus.reddrop.data_access.RemoteLoader;
+import ch.versusvirus.reddrop.logic.AppointmentScheduler;
 import ch.versusvirus.reddrop.logic.model.Appointment;
 import ch.versusvirus.reddrop.logic.model.AppointmentGetterParams;
 import ch.versusvirus.reddrop.logic.model.DonationListEntry;
@@ -52,6 +57,18 @@ public class AppointmentActivity extends AppCompatActivity {
             timeBarAdapter.setMaxExpectedPeople(result.getMaxCapacityPerSlot());
             timeBarAdapter.submitList(result.getTimeslots(location.getTimeStart()));
             timeBarAdapter.notifyDataSetChanged();
+
+            runOnUiThread(() -> {
+                Spinner timeFrameSelector = findViewById(R.id.spinner_timeframe);
+                SpinnerAdapter adapter = new ArrayAdapter<>(this, R.layout.support_simple_spinner_dropdown_item, result.getTimeslots(location.getTimeStart()));
+                timeFrameSelector.setAdapter(adapter);
+            });
+        });
+
+        Button schedule = findViewById(R.id.btn_schedule);
+        schedule.setOnClickListener(v -> {
+            Spinner timeFrameSelector = findViewById(R.id.spinner_timeframe);
+            AppointmentScheduler.scheduleAt(location, timeFrameSelector.getSelectedItemPosition(), getApplicationContext());
         });
     }
 

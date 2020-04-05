@@ -1,6 +1,8 @@
 package ch.versusvirus.reddrop.logic.model;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Locale;
 
 public class AppointmentTimeslot {
 
@@ -26,5 +28,10 @@ public class AppointmentTimeslot {
 
     public void setExpectedPeople(int expectedPeople) {
         this.expectedPeople = expectedPeople;
+    }
+
+    @Override
+    public String toString() {
+        return new SimpleDateFormat("HH:mm", Locale.ENGLISH).format(time);
     }
 }
