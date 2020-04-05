@@ -66,14 +66,14 @@ public class HomeActivity extends AppCompatActivity {
         });
 
         SharedPreferences sp = getSharedPreferences(ProfileActivity.MyPREFERENCES, MODE_PRIVATE);
-        String region = mapRegion(sp.getString("Region", "Overall"));
+        String region = sp.getString("Region", "Overall");
         String bloodType = sp.getString("BloodType", "A+");
 
         TextView bloodTypeText = findViewById(R.id.txt_home_blood_type);
         TextView bloodRegion = findViewById(R.id.txt_home_location);
         bloodTypeText.setText(bloodType);
         bloodRegion.setText(region);
-        getBloodData(region, bloodType);
+        getBloodData(mapRegion(region), bloodType);
     }
 
     private void getBloodData(String location, String bloodType) {

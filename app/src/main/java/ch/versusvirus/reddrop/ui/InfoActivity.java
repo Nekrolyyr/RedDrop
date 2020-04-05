@@ -14,6 +14,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.NotificationManagerCompat;
 
 import java.util.ArrayList;
@@ -48,6 +49,10 @@ public class InfoActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_info);
+
+        Toolbar myToolbar = findViewById(R.id.my_toolbar_info);
+        setSupportActionBar(myToolbar);
+        setTitle("Information");
 
         reminder = new Reminder(getApplicationContext());
 
