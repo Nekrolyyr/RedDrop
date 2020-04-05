@@ -191,6 +191,7 @@ public class ProfileActivity extends AppCompatActivity {
                 builder.setTitle("Please accept terms and conditions");
                 AlertDialog alert = builder.create();
                 alert.show();
+                alert.getWindow().setLayout(1000, 250);
             } else if (!TextUtils.isEmpty(edittext.getText().toString()) && (gender.equals("M") || gender.equals("F") || gender.equals("O"))) {
                 SharedPreferences sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
                 SharedPreferences.Editor editor = sharedpreferences.edit();
@@ -212,6 +213,8 @@ public class ProfileActivity extends AppCompatActivity {
                 builder.setTitle("Please insert the mandatory fields");
                 AlertDialog alert = builder.create();
                 alert.show();
+                alert.getWindow().setLayout(1000, 250);
+
             }
 
         });
